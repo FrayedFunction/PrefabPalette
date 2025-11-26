@@ -1,3 +1,6 @@
+# v1.0.1
+* Line mode spacing minium now 0 instead of 1. 
+
 # v1.0.0
 *  Initial Release
 * Core features.
