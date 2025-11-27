@@ -39,8 +39,12 @@ namespace PrefabPalette
             string assetPath = AssetDatabase.GenerateUniqueAssetPath($"{PathDr.GetCollectionsFolder}/{name}_PrefabCollection.asset");
 
             AssetDatabase.CreateAsset(asset, assetPath);
-            AssetDatabase.SaveAssets();
-            AssetDatabase.Refresh();
+            
+            EditorApplication.delayCall += () =>
+            {
+                AssetDatabase.SaveAssets();
+                AssetDatabase.Refresh();
+            };
 
             return asset;
         }

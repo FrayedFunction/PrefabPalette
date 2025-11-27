@@ -32,8 +32,12 @@ namespace PrefabPalette
         private void OnDisable()
         {
             EditorUtility.SetDirty(this);
-            AssetDatabase.SaveAssets();  
-            AssetDatabase.Refresh();     
+            
+            EditorApplication.delayCall += () =>
+            {
+                AssetDatabase.SaveAssets();
+                AssetDatabase.Refresh();
+            };
         }
     }
 }
