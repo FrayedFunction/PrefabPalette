@@ -1,4 +1,5 @@
 # v1.0.1
+* Resolved error being thrown by properly queuing calls to Asset Database. 
 * Line mode spacing minimum now 0 instead of 1.
 * Fixed issue with preexisting collections in folder not being auto recognised.
 
