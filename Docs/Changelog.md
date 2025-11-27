@@ -1,5 +1,6 @@
 # v1.0.1
 * Line mode spacing minimum now 0 instead of 1.
+* Fixed issue with preexisting collections in folder not being auto recognised.
 
 # v1.0.0
 *  Initial Release
