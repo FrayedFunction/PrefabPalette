@@ -22,6 +22,7 @@ namespace PrefabPalette
         public static void OpenMainWindow()
         {
             GetWindow<CollectionsManagerWindow>("Prefab Palete: Collections Manager");
+            PrefabCollectionList.Instance.Sync();
         }
 
         private void OnEnable()

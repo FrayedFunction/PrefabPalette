@@ -23,6 +23,7 @@ namespace PrefabPalette
         public static void OnShowToolWindow()
         {
             var window = GetWindow<PaletteWindow>("Prefab Palette");
+            PrefabCollectionList.Instance.Sync();
         }
 
         private void OnEnable()

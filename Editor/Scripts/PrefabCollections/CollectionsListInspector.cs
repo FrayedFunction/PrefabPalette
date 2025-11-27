@@ -82,8 +82,11 @@ namespace PrefabPalette
             collectionsInFolder.RemoveAll(toDelete.Contains);
 
             // Save the project after asset deletion
-            AssetDatabase.SaveAssets();
-            AssetDatabase.Refresh();
+            EditorApplication.delayCall += () =>
+            {
+                AssetDatabase.SaveAssets();
+                AssetDatabase.Refresh();
+            };
         }
     }
 }
