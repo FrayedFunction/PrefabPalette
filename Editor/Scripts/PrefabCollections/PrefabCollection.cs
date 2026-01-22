@@ -39,8 +39,12 @@ namespace PrefabPalette
             string assetPath = AssetDatabase.GenerateUniqueAssetPath($"{PathDr.GetCollectionsFolder}/{name}_PrefabCollection.asset");
 
             AssetDatabase.CreateAsset(asset, assetPath);
-            AssetDatabase.SaveAssets();
-            AssetDatabase.Refresh();
+            
+            EditorApplication.delayCall += () =>
+            {
+                AssetDatabase.SaveAssets();
+                AssetDatabase.Refresh();
+            };
 
             return asset;
         }
@@ -67,7 +71,10 @@ namespace PrefabPalette
 
             foreach (var collection in GetAllCollectionsInFolder)
             {
-                if (collection != null && collection.Name == name)
+                if (collection == null)
+                    continue;
+
+                if (collection.Name == name || collection.name.Replace("_PrefabCollection", "") == name.ToString())
                 {
                     return collection;
                 }

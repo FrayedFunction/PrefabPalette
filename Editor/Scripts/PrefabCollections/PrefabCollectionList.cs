@@ -33,7 +33,7 @@ namespace PrefabPalette
         }
 
         /// <summary>
-        /// Updates list to match Enum values.
+        /// Ensures list matches Enum values.
         /// </summary>
         public void SyncListWithEnum()
         {
@@ -73,6 +73,33 @@ namespace PrefabPalette
 
             AssetDatabase.Refresh();
             UnityEditor.Compilation.CompilationPipeline.RequestScriptCompilation();
+        }
+
+        /// <summary>
+        /// Searches the collection folder for existing collections,
+        /// updates the list, and regenerates the enum file.
+        /// </summary>
+        public void Sync()
+        {
+            SyncListWithEnum();
+
+            List<string> collectionsInFolder = PrefabCollection
+                .GetAllCollectionsInFolder
+                .Select(e => e.name.Replace("_PrefabCollection", ""))
+                .Distinct()
+                .ToList();
+
+            var oldSet = new HashSet<string>(collectionNames);
+            var newSet = new HashSet<string>(collectionsInFolder);
+
+            bool hasChanged = !newSet.IsSubsetOf(oldSet);
+
+            if (!hasChanged)
+                return;
+
+            oldSet.UnionWith(newSet);
+            collectionNames = oldSet.ToList();
+            GenerateEnum();
         }
     }
 }
