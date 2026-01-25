@@ -13,8 +13,8 @@ namespace PrefabPalette
         public PrefabCollection CurrentPrefabCollection => PrefabCollection.GetOrCreateCollection(CurrentCollectionName);
 
         // Palette
-        public float palette_minScale = 50f;
-        public float palette_maxScale = 300f;
+        public float palette_minThumbnailScale = 50f;
+        public float palette_maxThumbnailScale = 300f;
         public int palette_gridColumns = 4;
 
         // Placer

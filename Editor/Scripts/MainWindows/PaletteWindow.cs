@@ -88,7 +88,7 @@ namespace PrefabPalette
 
             float windowWidth = EditorGUIUtility.currentViewWidth - 10; // Get editor window width (minus padding)
 
-            dynamicPrefabIconSize = Mathf.Clamp(Mathf.Max(windowWidth / Settings.palette_gridColumns - 10, 40), Settings.palette_minScale, Settings.palette_maxScale);
+            dynamicPrefabIconSize = Mathf.Clamp(Mathf.Max(windowWidth / Settings.palette_gridColumns - 10, 40), Settings.palette_minThumbnailScale, Settings.palette_maxThumbnailScale);
 
             // Start Scroll View
             paletteScrollPosition = GUILayout.BeginScrollView(paletteScrollPosition); // Set max visible height

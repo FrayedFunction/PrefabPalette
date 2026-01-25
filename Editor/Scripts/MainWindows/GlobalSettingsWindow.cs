@@ -31,8 +31,8 @@ namespace PrefabPalette
             GUILayout.Label("Palette:", EditorStyles.whiteLargeLabel);
             EditorGUI.indentLevel++;
             Settings.palette_gridColumns = Mathf.Max(1, EditorGUILayout.IntField("Columns", Settings.palette_gridColumns));
-            Settings.palette_minScale = Mathf.Clamp(EditorGUILayout.FloatField("Min Scale", Settings.palette_minScale), 50f, Settings.palette_maxScale);
-            Settings.palette_maxScale = Mathf.Clamp(EditorGUILayout.FloatField("Max Scale", Settings.palette_maxScale), Settings.palette_minScale, 500f);
+            Settings.palette_minThumbnailScale = Mathf.Clamp(EditorGUILayout.FloatField("Min Thumbnail Scale", Settings.palette_minThumbnailScale), 50f, Settings.palette_maxThumbnailScale);
+            Settings.palette_maxThumbnailScale = Mathf.Clamp(EditorGUILayout.FloatField("Max Thumbnail Scale", Settings.palette_maxThumbnailScale), Settings.palette_minThumbnailScale, 500f);
             EditorGUI.indentLevel--;
             
             GUILayout.Space(2);
