@@ -26,26 +26,53 @@ namespace PrefabPalette
 
         private void OnGUI()
         {
+            bool isEditorBusy = EditorApplication.isCompiling || EditorApplication.isUpdating;
+
             Helpers.TitleText("Prefab Collections", 15);
             Helpers.DrawLine(Color.grey);
-
-            if (editorInstance != null)
+            scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
+            
+            if (editorInstance != null && !isEditorBusy)
             {
-                scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
+                // If window exists and not busy, show collections list.
                 editorInstance.OnInspectorGUI();
-                EditorGUILayout.EndScrollView();
             }
 
-            // Disable button if AssetDatabase is reloading
-            GUI.enabled = !EditorApplication.isCompiling && !EditorApplication.isUpdating;
+            ShowBusyLabel(isEditorBusy);
 
-            if (GUILayout.Button(GUI.enabled ? "Save" : "Saving..."))
+            EditorGUILayout.EndScrollView();
+
+            // Disable button if AssetDatabase is reloading
+            GUI.enabled = !isEditorBusy;
+
+            if (GUILayout.Button(GUI.enabled ? "Save" : "Please Stand By..."))
             {
                 collectionsList.GenerateEnum();
                 CleanupCollectionsFolder(PrefabCollection.GetAllCollectionsInFolder, collectionsList);
             }
 
             EditorGUILayout.Space(10f);
+        }
+
+        private void ShowBusyLabel(bool isEditorBusy)
+        {
+            if (!isEditorBusy) 
+                return;
+
+            GUIStyle style = new GUIStyle()
+            {
+                fontSize = 18,
+                fontStyle = FontStyle.Italic,
+                alignment = TextAnchor.MiddleCenter,
+                normal = { textColor = Color.white }
+            };
+
+            // Center label.
+            EditorGUILayout.BeginVertical();
+            GUILayout.FlexibleSpace();
+            EditorGUILayout.LabelField("Editor Updating...", style, GUILayout.ExpandWidth(true));
+            GUILayout.FlexibleSpace();
+            EditorGUILayout.EndVertical();
         }
 
         // This shouldn't be a function of the list inspector, it would make more sense to be called
