@@ -90,12 +90,21 @@ namespace PrefabPalette
                 }
                 else
                 {
-                    Helpers.DrawLogo();
+                    Helpers.DrawLogo(128);
 
-                    if (GUILayout.Button("Open Palette"))
+                    if (GUILayout.Button("Palette"))
                     {
                         PaletteWindow.OnShowToolWindow();
-                        SceneView.RepaintAll();
+                    }
+
+                    if (GUILayout.Button("Collections Manager"))
+                    {
+                        CollectionsManagerWindow.OpenMainWindow();
+                    }
+
+                    if (GUILayout.Button("Settings"))
+                    {
+                        GlobalSettingsWindow.OpenWindow();
                     }
                 }
 
