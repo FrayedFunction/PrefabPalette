@@ -33,7 +33,10 @@ namespace PrefabPalette
             PlacementModeManager.CurrentMode.OnEnter(ToolContext.Instance);
 
             SceneView.duringSceneGui += OnSceneGUI;
-            minSize = new Vector2(400, 400);
+
+            Settings.paletteWindowScale.Resolve(Settings.globalMaxWindowScale, Settings.globalMinWindowScale, out Vector2 min, out Vector2 max);
+            minSize = min;
+            maxSize = max;
         }
 
         private void OnDisable()
@@ -178,6 +181,7 @@ namespace PrefabPalette
             GUILayout.EndVertical();
         }
 
+        // mode lifecycle stuff should live in Placement Mode Manager, not here.
         void OnSceneGUI(SceneView sceneView)
         {
             if (ToolContext.Instance.SelectedPrefab != null)
