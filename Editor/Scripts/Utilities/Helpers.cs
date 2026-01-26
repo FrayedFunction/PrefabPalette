@@ -8,7 +8,7 @@ namespace PrefabPalette
     public static class Helpers
     {
         /// <summary>
-        /// Draws a lable with correct indentation.
+        /// Draws a label with correct indentation.
         /// </summary>
         /// <param name="text"></param>
         /// <param name="style"></param>
