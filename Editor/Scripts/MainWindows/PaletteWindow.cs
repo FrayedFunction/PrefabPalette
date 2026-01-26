@@ -34,7 +34,7 @@ namespace PrefabPalette
 
             SceneView.duringSceneGui += OnSceneGUI;
 
-            Settings.paletteWindowScale.Resolve(Settings.globalMaxWindowScale, Settings.globalMinWindowScale, out Vector2 min, out Vector2 max);
+            Settings.paletteWindowScale.Resolve(Settings.globalMinWindowScale, Settings.globalMaxWindowScale, out Vector2 min, out Vector2 max);
             minSize = min;
             maxSize = max;
         }
