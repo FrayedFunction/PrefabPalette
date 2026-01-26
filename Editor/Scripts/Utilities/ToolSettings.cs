@@ -30,7 +30,7 @@ namespace PrefabPalette
 
         // Window scale settings.
         public Vector2 globalMinWindowScale = new(100f, 100f);
-        public Vector2 globalMaxWindowScale = new(100f, 100f);
+        public Vector2 globalMaxWindowScale = new(1000f, 1000f);
 
         public WindowScaleSettings paletteWindowScale;
         public WindowScaleSettings settingsWindowScale;
