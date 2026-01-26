@@ -25,7 +25,7 @@ namespace PrefabPalette
         }
 
         /// <summary>
-        /// Draws tools logo in the centere of the ui. Defualts to blue 256x256
+        /// Draws tools logo in the centre of the ui. Defualts to blue 256x256
         /// </summary>
         /// <param name="name"></param>
         /// <param name="size"></param>
