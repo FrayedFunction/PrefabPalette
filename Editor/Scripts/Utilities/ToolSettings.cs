@@ -28,6 +28,14 @@ namespace PrefabPalette
         public bool overlay_autoSize;
         public bool overlay_showControlsHelpBox = true;
 
+        // Window scale settings.
+        public Vector2 globalMinWindowScale = new(100f, 100f);
+        public Vector2 globalMaxWindowScale = new(100f, 100f);
+
+        public WindowScaleSettings paletteWindowScale;
+        public WindowScaleSettings settingsWindowScale;
+        public WindowScaleSettings collectionsManagerWindowScale;
+
         // Marked dirty on disable so Unity knows to save it
         private void OnDisable()
         {

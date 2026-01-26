@@ -8,6 +8,23 @@ namespace PrefabPalette
     public static class Helpers
     {
         /// <summary>
+        /// Draws a lable with correct indentation.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="style"></param>
+        public static void IndentedLabel(string text, int indentLevel, GUIStyle style = null)
+        {
+            style ??= EditorStyles.label;
+            
+            var indentWidth = 15f; // Unity indents at 15px.
+            
+            GUILayout.BeginHorizontal();
+            GUILayout.Space(indentLevel * indentWidth);
+            GUILayout.Label(text, style);
+            GUILayout.EndHorizontal();
+        }
+
+        /// <summary>
         /// Draws tools logo in the centere of the ui. Defualts to blue 256x256
         /// </summary>
         /// <param name="name"></param>
