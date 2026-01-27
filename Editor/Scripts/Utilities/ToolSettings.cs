@@ -13,8 +13,8 @@ namespace PrefabPalette
         public PrefabCollection CurrentPrefabCollection => PrefabCollection.GetOrCreateCollection(CurrentCollectionName);
 
         // Palette
-        public float palette_minScale = 50f;
-        public float palette_maxScale = 300f;
+        public float palette_minThumbnailScale = 50f;
+        public float palette_maxThumbnailScale = 300f;
         public int palette_gridColumns = 4;
 
         // Placer
@@ -27,6 +27,14 @@ namespace PrefabPalette
         public Vector2 overlay_size = new(420, 0);
         public bool overlay_autoSize;
         public bool overlay_showControlsHelpBox = true;
+
+        // Window scale settings.
+        public Vector2 globalMinWindowScale = new(100f, 100f);
+        public Vector2 globalMaxWindowScale = new(1000f, 1000f);
+
+        public WindowScaleSettings paletteWindowScale;
+        public WindowScaleSettings settingsWindowScale;
+        public WindowScaleSettings collectionsManagerWindowScale;
 
         // Marked dirty on disable so Unity knows to save it
         private void OnDisable()

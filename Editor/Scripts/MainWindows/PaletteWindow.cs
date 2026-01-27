@@ -33,7 +33,10 @@ namespace PrefabPalette
             PlacementModeManager.CurrentMode.OnEnter(ToolContext.Instance);
 
             SceneView.duringSceneGui += OnSceneGUI;
-            minSize = new Vector2(400, 400);
+
+            Settings.paletteWindowScale.Resolve(Settings.globalMinWindowScale, Settings.globalMaxWindowScale, out Vector2 min, out Vector2 max);
+            minSize = min;
+            maxSize = max;
         }
 
         private void OnDisable()
@@ -88,7 +91,7 @@ namespace PrefabPalette
 
             float windowWidth = EditorGUIUtility.currentViewWidth - 10; // Get editor window width (minus padding)
 
-            dynamicPrefabIconSize = Mathf.Clamp(Mathf.Max(windowWidth / Settings.palette_gridColumns - 10, 40), Settings.palette_minScale, Settings.palette_maxScale);
+            dynamicPrefabIconSize = Mathf.Clamp(Mathf.Max(windowWidth / Settings.palette_gridColumns - 10, 40), Settings.palette_minThumbnailScale, Settings.palette_maxThumbnailScale);
 
             // Start Scroll View
             paletteScrollPosition = GUILayout.BeginScrollView(paletteScrollPosition); // Set max visible height
@@ -178,6 +181,7 @@ namespace PrefabPalette
             GUILayout.EndVertical();
         }
 
+        // mode lifecycle stuff should live in Placement Mode Manager, not here.
         void OnSceneGUI(SceneView sceneView)
         {
             if (ToolContext.Instance.SelectedPrefab != null)

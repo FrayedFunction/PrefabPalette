@@ -170,6 +170,23 @@ Settings window can be opened via `Window > Prefab Palette > Settings`
 | **Auto Size?** | If true, will auto scale the overlay window to fit its contents with no scrolling. |
 | **Size** | Set a fixed width (x) and height (y) for the overlay. Scroll to reach cropped content.  |
 
+**Window Scaling**
+
+*Global*
+| *Option* | *Effect* |
+| :---- | :---- |
+| **Global Min** | Global maximum window scale. |
+| **Global Max** | Global minimum window scale.  |
+
+*Per Window*
+| *Option* | *Effect* |
+| :---- | :---- |
+| **Use Global Window Scale** | Defaults to global scale if true.  |
+| **Min Size** | Min window scale. |
+| **Max Size** | Max window scale. |
+
+⚠️ Note: `Min Size` & `Max Size` are only visible if `Use Global Window Scale` is false.
+
 ---
 ## **Support the Project**   
 If you find the tool useful and want to support its development, donations are welcome!
@@ -210,13 +227,17 @@ See [License](./License.md) file for terms of use, redistribution, & modificatio
 ---
 
 ## **Help**
-Use the GitHub issues page to ask questions, and submit bugs or feature requests. Alternatively, send an email to reach@frayedfunction.com
+For questions, bug reports, or feature requests, please use the GitHub Issues page.  
+You can also reach out directly via email at reach@frayedfunction.com.
 
 ---
 
 ## **Changes & Planned Features**
-See [Changelog](./Changelog.md) for release history.
+Release history is available in the [Changelog](./Changelog.md).
 
-Planned features can be found using the Issues page of the repo; Sort by the ‘enhancement’ label.
+Upcoming and planned features are tracked on the GitHub Issues page:
+- Filter by the `enhancement` label to see open feature requests.
+- Filter by the `bug` label to see open bug reports.
+- Filter by milestones to see the planned release order (subject to change).
 
 ---

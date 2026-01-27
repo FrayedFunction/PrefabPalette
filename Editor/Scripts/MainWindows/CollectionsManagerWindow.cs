@@ -27,8 +27,9 @@ namespace PrefabPalette
 
         private void OnEnable()
         {
-            minSize = new Vector2(600, 500);
-            maxSize = new Vector2(601, 501);
+            Settings.collectionsManagerWindowScale.Resolve(Settings.globalMinWindowScale, Settings.globalMaxWindowScale, out Vector2 min, out Vector2 max);
+            minSize = min;
+            maxSize = max;
         }
 
         private void OnGUI()
