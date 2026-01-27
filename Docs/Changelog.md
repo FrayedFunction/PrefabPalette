@@ -1,3 +1,9 @@
+# v1.0.2
+* Fixed bug generating empty collections when creating collection from folder.
+* Improved tool state messaging when creating collections with manager window.
+* New shortcut buttons added to options overlay when palette is closed.
+* Per window scaling options added to tool settings menu.
+
 # v1.0.1
 * Resolved error being thrown by properly queuing calls to Asset Database. 
 * Line mode spacing minimum now 0 instead of 1.
