@@ -14,43 +14,25 @@ Please update the version appropriately if your contribution changes behavior or
 
 ## Distribution
 
-Prefab Palette is distributed as a zip containing a `.unitypackage` and a copy of core docs at the time of release.
+Prefab Palette is distributed as a `.unitypackage` from the `Releases` section of the repo.
 
 ### 1. Prepare for Export
 
 1. Open `Window > Prefab Palette > Collections Manager`, choose `Manage Collections` and remove all items from the list.
 2. Open `PrefabPalette/Editor/Generated` folder. 
 3. Delete everything except `CollectionName.cs`
-4. Ensure no prefabs or other third-party assets are contained in the package.
-5. Create an empty folder named `PrefabPalette_vX.Y.Z` to contain the release.
+4. Ensure no prefabs or other third-party assets are contained in the package. ⚠️
 
 ### 2. Export `.unitypackage`
 1. In the **Project** window, select the `PrefabPalette` folder.
-2. Right-click the selection and choose **Export Package...**
-3. In the export dialog:
-   - Deselect **Include dependencies**
-   - Deselect **Include all scripts**
-   - Deselect `PrefabPalette/Docs` folder.
-4. **Export** package to the empty folder created in step one, then name it:  
+2. Right-click and choose **Export Package...**
+3. In the export dialog, **deselect** the following:
+   - Include dependencies
+   - Include all scripts
+   - Source icon/img files (e.g .kra , .psd etc)
+4. **Export** package and name it:  
    `PrefabPalette_vX.Y.Z.unitypackage`
-
-### 3. Include Core Docs
-1. Create a new folder called `docs` in the same one as the unity package.
-2. Copy the following (⚠️ Exclude `.meta` files!):
-   * imgs
-   * README.md
-   * Changelog.md
-   * License.md
-
-### 4. Zip the contents
-The zipped folder should now resemble the following structure:
-
-      |- PrefabPalette_vX.Y.Z.zip
-      |-- PrefabPalette_vX.Y.Z
-      |--- docs
-      |---- imgs
-      |---- Changelog.md
       
-> Attach zip to a new github release with the same version tag.
+> Attach package to a new github release with the same version tag.
 
-⚠️ Note: Ensure no prefabs or other assets are contained in the release!
+⚠️ Ensure no prefabs or other assets are contained in the release! ⚠️
