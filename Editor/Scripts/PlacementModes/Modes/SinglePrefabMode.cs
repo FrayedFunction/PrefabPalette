@@ -33,6 +33,8 @@ namespace PrefabPalette
             {
                 VisualPlacer.Stop();
 
+                RotationAngleSnapHelper.Reset();
+
                 lastSurfaceNormal = SceneInteraction.SurfaceNormal;
 
                 Transform parent = PrefabParentManager.GetAppropriateParent(context.SelectedPrefab);
@@ -46,9 +48,9 @@ namespace PrefabPalette
             // Rotate while holding the mouse button
             if (e.type == EventType.MouseDrag && e.button == 0 && !e.alt && currentPlacedObject != null)
             {
-                float angle = e.delta.x * settings.freeMode_rotationSpeed;
                 Vector3 axis = context.Settings.placer_alignWithSurface ? lastSurfaceNormal : Vector3.up;
-                currentPlacedObject.transform.Rotate(axis, angle, Space.World);
+                RotationAngleSnapHelper.RotateWithSnap(currentPlacedObject.transform, e.delta.x, settings.freeMode_rotationSpeed, axis);
+
                 e.Use();
             }
 
@@ -82,7 +84,9 @@ namespace PrefabPalette
 
         public string[] ControlsHelpBox => new string[]
         {
-                "LMB", "Place Single Prefab"
+                "LMB", "Place Single Prefab",
+                "Hold LMB", "Rotate",
+                "Release LMB", "Place"
         };
     }
 }
