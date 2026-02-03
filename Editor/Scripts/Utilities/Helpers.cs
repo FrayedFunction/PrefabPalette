@@ -116,16 +116,6 @@ namespace PrefabPalette
             }
         }
 
-        public static Vector3 SnapToGrid(Vector3 position)
-        {
-            float gridSize = UnityEditor.EditorSnapSettings.move.x;
-            position.x = Mathf.Round(position.x / gridSize) * gridSize;
-            position.y = Mathf.Round(position.y / gridSize) * gridSize;
-            position.z = Mathf.Round(position.z / gridSize) * gridSize;
-
-            return position;
-        }
-
         public static T LoadOrCreateAsset<T>(string folderPath, string assetName, out string assetPath) where T : ScriptableObject
         {
             // Find existing asset
