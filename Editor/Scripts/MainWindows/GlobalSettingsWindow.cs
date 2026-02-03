@@ -35,7 +35,8 @@ namespace PrefabPalette
             Settings.palette_minThumbnailScale = Mathf.Clamp(EditorGUILayout.FloatField("Min Thumbnail Scale", Settings.palette_minThumbnailScale), 50f, Settings.palette_maxThumbnailScale);
             Settings.palette_maxThumbnailScale = Mathf.Clamp(EditorGUILayout.FloatField("Max Thumbnail Scale", Settings.palette_maxThumbnailScale), Settings.palette_minThumbnailScale, 500f);
             EditorGUI.indentLevel--;
-            
+            GUILayout.Space(4);
+            Helpers.DrawLine(Color.gray);
             GUILayout.Space(4);
 
             // Placer Setttings
@@ -44,8 +45,11 @@ namespace PrefabPalette
             Settings.placer_includeMask = LayerMaskField("Include Layers", Settings.placer_includeMask);
             Settings.placer_color = EditorGUILayout.ColorField("Color", Settings.placer_color);
             Settings.placer_radius = Mathf.Max(0.01f, EditorGUILayout.FloatField("Radius", Settings.placer_radius));
+            Settings.placer_mouseMoveThreshold = (Mathf.Max(0.001f, EditorGUILayout.FloatField("Mouse Move Threshold", Settings.placer_mouseMoveThreshold)));
+            Settings.placer_maxRaycastDistance = (Mathf.Max(1f, EditorGUILayout.FloatField("Raycast Distance", Settings.placer_maxRaycastDistance)));
             EditorGUI.indentLevel-- ;
-
+            GUILayout.Space(4);
+            Helpers.DrawLine(Color.gray);
             GUILayout.Space(4);
 
             // Overlay Settings
@@ -54,11 +58,12 @@ namespace PrefabPalette
             Settings.overlay_autoSize = EditorGUILayout.Toggle("Auto Size?", Settings.overlay_autoSize);
             Settings.overlay_size = Settings.overlay_autoSize ? Vector2.zero : EditorGUILayout.Vector2Field("Size", Settings.overlay_size);
             EditorGUI.indentLevel--;
-
+            GUILayout.Space(4);
+            Helpers.DrawLine(Color.gray);
             GUILayout.Space(4);
             
             // Window Scale
-            GUILayout.Label("Window Scaling:", EditorStyles.whiteLargeLabel);
+            GUILayout.Label("Window Scale:", EditorStyles.whiteLargeLabel);
             EditorGUI.indentLevel++;
             Settings.globalMinWindowScale = EditorGUILayout.Vector2Field("Global min", Settings.globalMinWindowScale);
             // Only min needs to be clamped to a floor as max floor is already clamped by min.
@@ -75,6 +80,9 @@ namespace PrefabPalette
             Helpers.IndentedLabel("Settings", EditorGUI.indentLevel, EditorStyles.whiteLabel);
             WindowScaleSettingsGUI.Draw(Settings.settingsWindowScale);
             EditorGUI.indentLevel--;
+            GUILayout.Space(4);
+            Helpers.DrawLine(Color.gray);
+            GUILayout.Space(4);
 
             GUILayout.Space(10);
             GUILayout.EndScrollView();
