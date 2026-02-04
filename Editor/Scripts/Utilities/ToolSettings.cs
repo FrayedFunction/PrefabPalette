@@ -22,6 +22,8 @@ namespace PrefabPalette
         public float placer_radius = 0.2f;
         public LayerMask placer_includeMask = ~0; // masks to be included in scene interaction raycast. Default is everything.
         public bool placer_alignWithSurface = false;
+        public float placer_mouseMoveThreshold = 0.5f;
+        public float placer_maxRaycastDistance = 1000f;
 
         // Overlay
         public Vector2 overlay_size = new(420, 0);

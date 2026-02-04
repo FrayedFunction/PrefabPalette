@@ -2,11 +2,38 @@ using UnityEditor;
 using UnityEngine;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System;
 
 namespace PrefabPalette
 {
     public static class Helpers
     {
+        public static void IndentBlock(int levels, Action draw)
+        {
+            GUILayout.BeginHorizontal();
+            GUILayout.Space(levels * 15f);
+            GUILayout.BeginVertical();
+            draw();
+            GUILayout.EndVertical();
+            GUILayout.EndHorizontal();
+        }
+
+        /// <summary>
+        /// Clickable label that opens <paramref name="url"/>.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="url"></param>
+        public static void LinkLabel(string text, string url)
+        {   
+            if (GUILayout.Button(text, EditorStyles.linkLabel))
+            {
+                Application.OpenURL(url);
+            }
+
+            Rect r = GUILayoutUtility.GetLastRect();
+            EditorGUIUtility.AddCursorRect(r, MouseCursor.Link);
+        }
+
         /// <summary>
         /// Draws a label with correct indentation.
         /// </summary>
@@ -116,16 +143,6 @@ namespace PrefabPalette
             }
         }
 
-        public static Vector3 SnapToGrid(Vector3 position)
-        {
-            float gridSize = UnityEditor.EditorSnapSettings.move.x;
-            position.x = Mathf.Round(position.x / gridSize) * gridSize;
-            position.y = Mathf.Round(position.y / gridSize) * gridSize;
-            position.z = Mathf.Round(position.z / gridSize) * gridSize;
-
-            return position;
-        }
-
         public static T LoadOrCreateAsset<T>(string folderPath, string assetName, out string assetPath) where T : ScriptableObject
         {
             // Find existing asset
@@ -150,6 +167,24 @@ namespace PrefabPalette
             return AssetDatabase.LoadAssetAtPath<T>(assetPath);
         }
 
+        /// <summary>
+        /// Draws a Line with <paramref name="spacePx"/> pixels space above and below.
+        /// </summary>
+        /// <param name="color">Line colour</param>
+        /// <param name="spacePx">Space in pixels</param>
+        public static void Line(Color color, float spacePx = 4)
+        {
+            GUILayout.Space(spacePx);
+            DrawLine(color);
+            GUILayout.Space(spacePx);
+        }
+
+        /// <summary>
+        /// Draws a thin rectangle across the full width of the ui window.
+        /// </summary>
+        /// <param name="color">Rect color</param>
+        /// <param name="thickness">Rect thickness</param>
+        /// <param name="padding"> Padding around rect</param>
         public static void DrawLine(Color color, int thickness = 1, int padding = 10)
         {
             Rect r = EditorGUILayout.GetControlRect(GUILayout.Height(padding + thickness));

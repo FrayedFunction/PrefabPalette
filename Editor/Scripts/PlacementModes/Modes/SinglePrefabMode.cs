@@ -33,9 +33,12 @@ namespace PrefabPalette
             {
                 VisualPlacer.Stop();
 
+                RotationAngleSnapHelper.Reset();
+
                 lastSurfaceNormal = SceneInteraction.SurfaceNormal;
 
-                currentPlacedObject = (GameObject)PrefabUtility.InstantiatePrefab(context.SelectedPrefab);
+                Transform parent = PrefabParentManager.GetAppropriateParent(context.SelectedPrefab);
+                currentPlacedObject = (GameObject)PrefabUtility.InstantiatePrefab(context.SelectedPrefab, parent);
                 currentPlacedObject.transform.SetPositionAndRotation(SceneInteraction.Position + settings.freeMode_placementOffset, context.Settings.placer_alignWithSurface ? Quaternion.FromToRotation(Vector3.up, lastSurfaceNormal) : Quaternion.identity);
                 Undo.RegisterCreatedObjectUndo(currentPlacedObject, "Placed Prop");
 
@@ -45,9 +48,9 @@ namespace PrefabPalette
             // Rotate while holding the mouse button
             if (e.type == EventType.MouseDrag && e.button == 0 && !e.alt && currentPlacedObject != null)
             {
-                float angle = e.delta.x * settings.freeMode_rotationSpeed;
                 Vector3 axis = context.Settings.placer_alignWithSurface ? lastSurfaceNormal : Vector3.up;
-                currentPlacedObject.transform.Rotate(axis, angle, Space.World);
+                RotationAngleSnapHelper.RotateWithSnap(currentPlacedObject.transform, e.delta.x, settings.freeMode_rotationSpeed, axis);
+
                 e.Use();
             }
 
@@ -81,7 +84,9 @@ namespace PrefabPalette
 
         public string[] ControlsHelpBox => new string[]
         {
-                "LMB", "Place Single Prefab"
+                "LMB", "Place Single Prefab",
+                "Hold LMB", "Rotate",
+                "Release LMB", "Place"
         };
     }
 }

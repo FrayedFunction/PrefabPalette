@@ -105,7 +105,7 @@ The class should iInherit from `IPlacementMode` and implement the following cont
 
 |**UI**||
 | :---- | :---- |
-|  **public string[] ControlsHelpBox { get; }** | Populates the *Controls Dropdown* on the overlay, providing an overview of the mode's controls. <br>The content is rendered as a 2-column table. <br>For example: <br>`public string[] ControlsHelpBox => new string[] { “LMB”, “Place Point”, “Enter”, “Confirm Line”, "Escape", "Cancel Drawing Line" };` <br>Renders as:<br>![Alt text for the image](imgs/ControlsDropdown.png)|
+|  **public string[] ControlsHelpBox { get; }** | Populates the *Controls Dropdown* on the overlay, providing an overview of the mode's controls. <br>The content is rendered as a 2-column table. <br>For example: <br>`public string[] ControlsHelpBox => new string[] { “LMB”, “Place Point”, “Enter”, “Confirm Line”, "Escape", "Cancel Drawing Line" };` <br>Renders as:<br>![Controls Dropdown img](../imgs/ControlsDropdown.png)|
 | **public void SettingsOverlayGUI(ToolContext)** | Renders mode specific ui content below the *Controls Dropdown* on the overlay. |
 
 3\. **Create new mode settings object**

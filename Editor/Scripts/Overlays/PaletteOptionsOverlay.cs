@@ -31,26 +31,10 @@ namespace PrefabPalette
                 if (EditorWindow.HasOpenInstances<PaletteWindow>())
                 {
                     GUILayout.BeginVertical();
-
-                    GUILayout.BeginHorizontal();
-                    GUILayout.Space(10f);
-                    SceneInteraction.SnapToGrid = GUILayout.Toggle(
-                        SceneInteraction.SnapToGrid,
-                        EditorGUIUtility.IconContent("SceneViewSnap").image,
-                        "Button",
-                        GUILayout.ExpandWidth(true),
-                        GUILayout.Height(40)
-                    );
-                    GUILayout.Space(10f);
-                    GUILayout.EndHorizontal();
-                    ToolContext.Instance.Settings.placer_alignWithSurface = EditorGUILayout.Toggle("Align with surface?", ToolContext.Instance.Settings.placer_alignWithSurface);
                     Helpers.DrawLine(Color.grey);
 
                     GUILayout.Space(4);
                     PlacementModeManager.ToolbarGUI(tool);
-
-                    GUILayout.Space(2.5f);
-                    GUILayout.Label(PlacementModeManager.CurrentModeName.ToString(), EditorStyles.boldLabel);
                     GUILayout.Space(2.5f);
 
                     string[] controls = PlacementModeManager.CurrentMode.ControlsHelpBox;
@@ -80,10 +64,16 @@ namespace PrefabPalette
                             GUILayout.EndVertical();
                         }
                     }
+
                     GUILayout.Space(5f);
+                    // Global settings
+                    ToolContext.Instance.Settings.placer_alignWithSurface = EditorGUILayout.Toggle("Align with surface?", ToolContext.Instance.Settings.placer_alignWithSurface);
+                    Helpers.DrawLine(Color.grey);
+                    GUILayout.Space(2.5f);
+                    GUILayout.Label(PlacementModeManager.CurrentModeName.ToString(), EditorStyles.boldLabel);
 
+                    // Mode settings
                     PlacementModeManager.CurrentMode.SettingsOverlayGUI(tool);
-
                     GUILayout.Space(10);
                     Helpers.DrawLine(Color.grey);
                     GUILayout.EndVertical();

@@ -66,6 +66,7 @@ namespace PrefabPalette
             if (spawnedObjParent == null)
             {
                 spawnedObjParent = new GameObject($"Line:{context.SelectedPrefab.name}");
+                spawnedObjParent.transform.SetParent(PrefabParentManager.GetAppropriateParent(context.SelectedPrefab));
                 spawnedObjParent.transform.position = startPoint;
             }
 
