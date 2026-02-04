@@ -1,3 +1,21 @@
+# v1.0.3
+**Tool**
+* Placement now respects prefab stages and parents objects correctly.
+* Reorganise PaletteOptionsOverlay UI.
+* Remove SnapToGrid toggle.
+* Optimise scene view raycast for performance.
+* Support native grid and rotation angle snapping. 
+* Expose mouse move threshold and max raycast distance in ToolSettings
+* Add contact and links section to ToolSettings.
+* Add indent block and link label helper methods.
+
+**Docs**
+* Fix broken links.
+* Move repo level docs into new _NoShip folder.
+* Update images.
+* Tighten feature description.
+* Remove references to custom snapping.
+
 # v1.0.2
 * Fixed bug generating empty collections when creating collection from folder.
 * Improved tool state messaging when creating collections with manager window.
