@@ -1,9 +1,9 @@
 ![Logo](imgs/Logo_Blue_256.png)
-# Prefab Palette: Read Me
+# Prefab Palette
 ---
 ## See Also
-* [Developers](./Developers.md)
-* [ContributionsGuide](./ContributionsGuide.md) 
+* [Developers](./_NoShip/Developers.md)
+* [ContributionsGuide](./_NoShip/ContributionsGuide.md) 
 ---
 
 ## **Overview**
@@ -21,29 +21,29 @@
 
 ## **Core Features**
 
-* *Prefab Collections*:  
-  Organise your prefabs into custom collections using either the Collections Manager window or by selecting folders/assets in the Project Window and using the create collection option from the right-click context menu.
+* **Prefab Collections**:
+  Organise assets into custom collections via the *Collections Manager* or directly from the Project Window’s right-click context menu.
 
-* *Palette Window*:  
-  Dockable window to browse prefab collections and select prefabs via their thumbnails.
+* **Palette Window**:
+  A dockable browser to visualise and select prefabs quickly through their thumbnails.
 
-* *Scene View Overlay:*  
-  Overlay UI for changing global placement settings, switching Placement Modes and customising their settings directly in the Scene View.
+* **Scene View Overlay**:
+  Manage placement settings and toggle *Placement Modes* without leaving the Scene View.
 
-* *Visual Placer:*  
-  When the tool is active, a target reticle will appear in the scene view, following your mouse to show where the prefab will be placed based on the current mode and settings.
+* **Visual Placer**:
+  A dynamic target reticle follows your cursor, providing real-time feedback on exactly where and how your prefab will land.
+    
+* **Placement Modes**:
+  Switch between specialised placement behaviors, each with unique logic and settings.
 
-* *Placement Modes:*  
-  Swap between unique placement behaviors with their own set of options, all in the scene view overlay.
+* **Fully Configurable**:
+  Fine-tune your workflow in the *Tool Settings* window. Adjust UI scale, reticle colors, physics layers, and more.
 
-* *Configurable:*  
-  Customise tool-wide settings in the Tool Settings window. Adjust the palettes’ scale, overlay size, placer colour, placer physics layer and more.
+* **Native Integration**:
+  Seamlessly supports Unity’s native *Undo/Redo* system and standard *Snap Controls*.
 
-* *Undo/Redo Integration:*  
-  Instantiated prefabs are integrated into Unitys native Undo/Redo system. 
-
-* *Extendable:*  
-  Built with a modular, state-based design, making it easy to add new placement modes. see [Developers.md](./Developers.md) for detailed guidance.
+* **Extensible Architecture**:
+  Built on a modular, state-based design. Implement custom placement logic by following the [Developer Guide](./_NoShip/Developers.md#creating-new-mode).
 
 ---
 
@@ -95,7 +95,7 @@ The palette can be opened through either:
 ---
 
 ## **Overlay** 
-The overlay is used to toggle common settings, switch between modes, and adjust mode specific options all from the scene view. Its size can be customised via the tool settings window, see section 6 for more info.  
+The overlay is used to toggle common settings, switch between modes, and adjust mode specific options from the scene view. Its size can be customised via the tool settings window.
 
 ### How to open
 Unity Version:
@@ -103,7 +103,7 @@ Unity Version:
  * **2023.1+**: Open with the overlay toolbar icon ![Overlay Icon](imgs/OverlayToolbarIcon.png) 
 
 ### Resizing the overlay
-See the *Overlay* options in the [Tool Settings & Customisation](#ToolSettings&Customisation) section.
+See the *Overlay* options in the [Tool Settings & Customisation](#tool-settings--customisation) section.
 
 ---
 
@@ -113,8 +113,8 @@ These options are available across all placement modes.
 
 | *Option* | *Effect* |
 | :---- | :---- |
-|  **Snapping** | Toggle snap to grid, use native grid system toolbar for dimensions. |
 | **Align with surface?** | Align the prefabs rotation with the normal of the surface it’s placed on. |
+
 ### **Single**
 Click to place a single selected prefab instance.
 
@@ -149,6 +149,8 @@ Use this mode to draw a line of prefabs and control how the line renders with th
 ## **Tool Settings & Customisation**
 
 Settings window can be opened via `Window > Prefab Palette > Settings`
+
+![Settings Window](imgs/SettingsWindow.png) 
 
 **Palette**
 | *Option* | *Effect* |
@@ -221,7 +223,7 @@ See [License](./License.md) file for terms of use, redistribution, & modificatio
 **Q: Can I use this with terrain?**  
  A: Yes, the tool supports placement on Unity Terrain.
 
-**Q: Why can’t the tool be installed via the Unity Package Manager?**  
+**Q: Why can’t the tool be installed via Unity Package Manager?**  
  A: The tool relies on an enum generated at runtime to populate dropdowns with available collections. UPM expects packages to remain unchanged, so generating files at runtime isn’t possible. Since the generated enum needs to reside within the package's assembly definition to be accessible by dependent code, this restriction makes UPM unsuitable for distributing this tool. Working around this constraint would introduce significant complexity.
 
 ---
@@ -233,7 +235,7 @@ You can also reach out directly via email at reach@frayedfunction.com.
 ---
 
 ## **Changes & Planned Features**
-Release history is available in the [Changelog](./Changelog.md).
+Release history is available in [Changelog](./Changelog.md).
 
 Upcoming and planned features are tracked on the GitHub Issues page:
 - Filter by the `enhancement` label to see open feature requests.
