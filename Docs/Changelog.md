@@ -1,4 +1,12 @@
-# v1.0.3
+# v1.0.4
+* Fixes a regression introduced in v1.0.3 that broke stacking and align with surface behaviour.
+
+* !== v1.0.3 has been withdrawn due to this issue. Please use v1.0.4. ==!
+
+# v1.0.3 - WITHDRAWN
+* !== This release was withdrawn due to a regression affecting placement behaviour.
+Do not use this version. ==!
+
 **Tool**
 * Placement now respects prefab stages and parents objects correctly.
 * Reorganise PaletteOptionsOverlay UI.
