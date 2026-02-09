@@ -10,13 +10,13 @@ namespace PrefabPalette
         static ToolSettings Settings => ToolContext.Instance.Settings;
 
         /// <summary>
-        /// Is grid snapping on?
+        /// Is snapping on?
         /// </summary>
-        public static bool SnapToGrid 
+        public static bool IsSnapActive
         {
-            get 
+            get
             {
-                return EditorSnapSettings.gridSnapActive || EditorSnapSettings.incrementalSnapActive; 
+                return EditorSnapSettings.gridSnapActive || EditorSnapSettings.incrementalSnapActive;
             }
         }
 
@@ -33,7 +33,6 @@ namespace PrefabPalette
         static Vector3 snapReference;
         static bool hasSnapReference;
 
-        static readonly RaycastHit[] hitBuffer = new RaycastHit[1]; // We only care about the closest object.
         static Vector2 lastMousePos;
 
         public static void OnEnable()
@@ -67,23 +66,18 @@ namespace PrefabPalette
 
             Ray ray = HandleUtility.GUIPointToWorldRay(e.mousePosition);
 
-            // Use NonAlloc raycast to reduce GC spikes
-            int hitCount = Physics.RaycastNonAlloc(
-                ray,
-                hitBuffer,
-                Settings.placer_maxRaycastDistance,
-                Settings.placer_includeMask,
-                QueryTriggerInteraction.Ignore
-            );
-
-            if (hitCount == 0)
+            if (!Physics.Raycast(
+                    ray,
+                    out RaycastHit hit,
+                    Settings.placer_maxRaycastDistance,
+                    Settings.placer_includeMask,
+                    QueryTriggerInteraction.Ignore)) // Ignore trigger colliders.
                 return;
 
-            RaycastHit hit = hitBuffer[0];
             SurfaceNormal = hit.normal;
             Vector3 rawPosition = hit.point;
 
-            if (!SnapToGrid)
+            if (!IsSnapActive)
             {
                 Position = rawPosition;
                 hasSnapReference = false;
