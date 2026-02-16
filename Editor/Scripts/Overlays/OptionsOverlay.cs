@@ -13,7 +13,8 @@ namespace PrefabPalette
     [Overlay(typeof(SceneView), "Prefab Palette: Options")]
     public class OptionsOverlay : Overlay
     {
-        private Vector2 _scrollPos;
+        private Vector2 scrollPos;
+        private GameObject parentObj;
 
         /// <summary>
         /// Creates the UI panel content shown in the Scene View overlay.
@@ -26,7 +27,7 @@ namespace PrefabPalette
             var container = new IMGUIContainer(() =>
             {
                 var tool = ToolContext.Instance;
-                _scrollPos = GUILayout.BeginScrollView(_scrollPos, GUILayout.Width(tool.Settings.overlay_size.x), GUILayout.Height(tool.Settings.overlay_size.y));
+                scrollPos = GUILayout.BeginScrollView(scrollPos, GUILayout.Width(tool.Settings.overlay_size.x), GUILayout.Height(tool.Settings.overlay_size.y));
 
                 if (EditorWindow.HasOpenInstances<PaletteWindow>() || tool.IsOverlayEnabled)
                 {
@@ -66,7 +67,15 @@ namespace PrefabPalette
                     }
 
                     GUILayout.Space(5f);
+
                     // Global settings
+                    ToolContext.Instance.ParentObj = (GameObject)EditorGUILayout.ObjectField(
+                        "Parent",
+                        ToolContext.Instance.ParentObj,
+                        typeof(GameObject),
+                        true
+                    );
+
                     ToolContext.Instance.Settings.placer_alignWithSurface = EditorGUILayout.Toggle("Align with surface?", ToolContext.Instance.Settings.placer_alignWithSurface);
                     Helpers.DrawLine(Color.grey);
                     GUILayout.Space(2.5f);

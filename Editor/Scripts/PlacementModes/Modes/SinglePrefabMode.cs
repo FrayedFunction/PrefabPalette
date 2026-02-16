@@ -37,7 +37,7 @@ namespace PrefabPalette
 
                 lastSurfaceNormal = SceneInteraction.SurfaceNormal;
 
-                Transform parent = PrefabParentManager.GetAppropriateParent(context.SelectedPrefab);
+                Transform parent = PrefabParentManager.GetAppropriateParent();
                 currentPlacedObject = (GameObject)PrefabUtility.InstantiatePrefab(context.SelectedPrefab, parent);
                 currentPlacedObject.transform.SetPositionAndRotation(SceneInteraction.Position + settings.freeMode_placementOffset, context.Settings.placer_alignWithSurface ? Quaternion.FromToRotation(Vector3.up, lastSurfaceNormal) : Quaternion.identity);
                 Undo.RegisterCreatedObjectUndo(currentPlacedObject, "Placed Prop");

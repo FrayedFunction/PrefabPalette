@@ -25,6 +25,27 @@ namespace PrefabPalette
         public GameObject SelectedPrefab { get; set; }
 
         /// <summary>
+        /// The active game object new prefabs should be instatiated as children of.
+        /// </summary>
+        public GameObject ParentObj 
+        { 
+            get 
+            { 
+                return parentObj; 
+            }
+            set
+            {
+                if (value != null && value.scene.IsValid())
+                {
+                    parentObj = value;
+                    return;
+                }
+
+                parentObj = null;
+            } 
+        }
+
+        /// <summary>
         /// Private constructor to enforce singleton pattern.
         /// Loads or creates the ToolSettings asset on instantiation.
         /// </summary>
@@ -36,7 +57,9 @@ namespace PrefabPalette
         /// <summary>
         /// Has setup run yet?
         /// </summary>
-        bool isEnabled;
+        private bool isEnabled;
+
+        private GameObject parentObj;
         
         /// <summary>
         /// Is the Palette Overlay enabled in the scene view?
