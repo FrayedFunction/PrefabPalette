@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 namespace PrefabPalette
@@ -30,6 +31,40 @@ namespace PrefabPalette
         ToolContext()
         {
             Settings = Helpers.LoadOrCreateAsset<ToolSettings>(PathDr.GetGeneratedFolderPath, "ToolSettings.asset", out _);
+        }
+
+        /// <summary>
+        /// Has setup run yet?
+        /// </summary>
+        bool isEnabled;
+        
+        /// <summary>
+        /// Is the Palette Overlay enabled in the scene view?
+        /// </summary>
+        public bool IsOverlayEnabled { get; set; }
+
+        public void OnEnable()
+        {
+            if (isEnabled)
+                return;
+
+            VisualPlacer.OnEnable();
+            SceneInteraction.OnEnable();
+            PlacementModeManager.OnEnable();
+            
+            isEnabled = true;
+        }
+
+        public void OnDisable()
+        {
+            if (!isEnabled)
+                return;
+
+            VisualPlacer.OnDisable();
+            SceneInteraction.OnDisable();
+            PlacementModeManager.OnDisable();
+            
+            isEnabled = false;
         }
     }
 }

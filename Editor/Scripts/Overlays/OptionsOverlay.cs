@@ -11,7 +11,7 @@ namespace PrefabPalette
     /// Allows users to toggle grid snapping, select placement modes, and configure mode-specific settings.
     /// </summary>
     [Overlay(typeof(SceneView), "Prefab Palette: Options")]
-    public class PaletteOptionsOverlay : Overlay
+    public class OptionsOverlay : Overlay
     {
         private Vector2 _scrollPos;
 
@@ -28,7 +28,7 @@ namespace PrefabPalette
                 var tool = ToolContext.Instance;
                 _scrollPos = GUILayout.BeginScrollView(_scrollPos, GUILayout.Width(tool.Settings.overlay_size.x), GUILayout.Height(tool.Settings.overlay_size.y));
 
-                if (EditorWindow.HasOpenInstances<PaletteWindow>())
+                if (EditorWindow.HasOpenInstances<PaletteWindow>() || tool.IsOverlayEnabled)
                 {
                     GUILayout.BeginVertical();
                     Helpers.DrawLine(Color.grey);
