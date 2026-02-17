@@ -9,7 +9,6 @@ namespace PrefabPalette
     /// </summary>
     public static class PrefabParentManager
     {
-        // TODO: Add support for custom parenting options.
         /// <summary>
         /// Returns the appropriate parent transform for a prefab, depending on whether
         /// it is being placed in a prefab stage or the active scene.

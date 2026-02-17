@@ -93,17 +93,17 @@ namespace PrefabPalette
 
                     if (GUILayout.Button("Palette"))
                     {
-                        PaletteWindow.OnShowToolWindow();
+                        PaletteWindow.Open();
                     }
 
                     if (GUILayout.Button("Collections Manager"))
                     {
-                        CollectionsManagerWindow.OpenMainWindow();
+                        CollectionsManagerWindow.Open();
                     }
 
                     if (GUILayout.Button("Settings"))
                     {
-                        GlobalSettingsWindow.OpenWindow();
+                        GlobalSettingsWindow.Open();
                     }
                 }
 

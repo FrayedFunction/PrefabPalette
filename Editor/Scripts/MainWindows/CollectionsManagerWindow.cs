@@ -19,7 +19,7 @@ namespace PrefabPalette
         /// Opens the Collections Manager window via the Window dropdown menu.
         /// </summary>
         [MenuItem("Window/Prefab Palette/Collections Manager")]
-        public static void OpenMainWindow()
+        public static void Open()
         {
             GetWindow<CollectionsManagerWindow>("Prefab Palete: Collections Manager");
             PrefabCollectionList.Instance.Sync();
@@ -53,7 +53,7 @@ namespace PrefabPalette
 
             if (GUILayout.Button("Manage Collections", GUILayout.Height(50)))
             {
-                CollectionsListInspector.OpenWindow();
+                CollectionsListInspector.Open();
 
                 if (HasOpenInstances<PaletteWindow>())
                 {
@@ -87,14 +87,14 @@ namespace PrefabPalette
             if (GUILayout.Button("Edit Prefab Collection", GUILayout.Height(25)))
             {
                 // Inspect the currentPrefabCollection scriptable object
-                PrefabCollectionInspector.OpenWindow(Settings.CurrentPrefabCollection);
+                PrefabCollectionInspector.Open(Settings.CurrentPrefabCollection);
             }
 
             GUILayout.Space(buttonSpace);
 
             if (GUILayout.Button("Open Palette", GUILayout.Height(25)))
             {
-                PaletteWindow.OnShowToolWindow();
+                PaletteWindow.Open();
             }
 
             GUILayout.Space(buttonSpace);

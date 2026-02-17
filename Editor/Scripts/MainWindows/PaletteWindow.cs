@@ -11,7 +11,7 @@ namespace PrefabPalette
         ToolSettings Settings => ToolContext.Instance.Settings;
 
         [MenuItem("Window/Prefab Palette/Palette")]
-        public static void OnShowToolWindow()
+        public static void Open()
         {
             GetWindow<PaletteWindow>("Prefab Palette");
             PrefabCollectionList.Instance.Sync();

@@ -9,9 +9,9 @@ namespace PrefabPalette
         Vector2 scrollPos;
 
         [MenuItem("Window/Prefab Palette/Settings")]
-        public static void OpenWindow()
+        public static void Open()
         {
-            var window = GetWindow<GlobalSettingsWindow>("Prefab Palette: Settings");
+            GetWindow<GlobalSettingsWindow>("Prefab Palette: Settings");
         }
 
         private void OnEnable()
