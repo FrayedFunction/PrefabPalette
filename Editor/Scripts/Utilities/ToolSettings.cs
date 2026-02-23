@@ -23,6 +23,7 @@ namespace PrefabPalette
         public bool placer_alignWithSurface = false;
         public float placer_mouseMoveThreshold = 0.5f;
         public float placer_maxRaycastDistance = 1000f;
+        public float placer_2dDepth = 0; // Expose in settings overlay when 2d mode active.
 
         // Options Overlay
         public Vector2 overlay_size = new(420, 0);

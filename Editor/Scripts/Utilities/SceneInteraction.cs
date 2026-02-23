@@ -47,6 +47,8 @@ namespace PrefabPalette
             SceneView.duringSceneGui -= UpdateRaycast;
         }
 
+        // This breaks if there is nothing to raycast against in 3d mode. I think this could be reworked to use a
+        // priority chain that covers both view modes, rather than explicit branching. 
         static void UpdateRaycast(SceneView sceneView)
         {
             Event e = Event.current;
@@ -66,16 +68,28 @@ namespace PrefabPalette
 
             Ray ray = HandleUtility.GUIPointToWorldRay(e.mousePosition);
 
-            if (!Physics.Raycast(
-                    ray,
-                    out RaycastHit hit,
-                    Settings.placer_maxRaycastDistance,
-                    Settings.placer_includeMask,
-                    QueryTriggerInteraction.Ignore)) // Ignore trigger colliders.
-                return;
+            Vector3 rawPosition;
 
-            SurfaceNormal = hit.normal;
-            Vector3 rawPosition = hit.point;
+            if (SceneView.lastActiveSceneView.in2DMode)
+            {
+                SurfaceNormal = Vector3.back;
+
+                rawPosition = ray.origin;
+                rawPosition.z = Get2DPlacementDepth(ray);
+            }
+            else
+            {
+                if (!Physics.Raycast(
+                   ray,
+                   out RaycastHit hit,
+                   Settings.placer_maxRaycastDistance,
+                   Settings.placer_includeMask,
+                   QueryTriggerInteraction.Ignore)) // Ignore trigger colliders.
+                    return;
+
+                SurfaceNormal = hit.normal;
+                rawPosition = hit.point;
+            }
 
             if (!IsSnapActive)
             {
@@ -93,6 +107,22 @@ namespace PrefabPalette
             Vector3 delta = rawPosition - snapReference;
             Vector3 snappedDelta = Handles.SnapValue(delta, EditorSnapSettings.move);
             Position = snapReference + snappedDelta;
+        }
+
+        static float Get2DPlacementDepth(Ray ray)
+        {
+            RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Settings.placer_maxRaycastDistance, Settings.placer_includeMask);
+            if (hit.collider != null)
+                return hit.transform.position.z;
+
+            // The idea here is to use whatever object the user last selected as a reference,
+            // but this might not be very intuitive in practice and could look like a bug if 
+            // the user last interacted with a camera or light that doesn't share the common z
+            // offset with props etc.
+            if (Selection.activeGameObject != null)
+                return Selection.activeGameObject.transform.position.z;
+
+            return Settings.placer_2dDepth;
         }
     }
 }
