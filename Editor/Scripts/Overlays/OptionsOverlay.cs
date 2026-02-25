@@ -1,4 +1,5 @@
 #if UNITY_EDITOR
+using Unity.VectorGraphics;
 using UnityEditor;
 using UnityEditor.Overlays;
 using UnityEngine;
@@ -14,7 +15,6 @@ namespace PrefabPalette
     public class OptionsOverlay : Overlay
     {
         private Vector2 scrollPos;
-        private GameObject parentObj;
 
         /// <summary>
         /// Creates the UI panel content shown in the Scene View overlay.
@@ -76,7 +76,9 @@ namespace PrefabPalette
                         true
                     );
 
-                    ToolContext.Instance.Settings.placer_alignWithSurface = EditorGUILayout.Toggle("Align with surface?", ToolContext.Instance.Settings.placer_alignWithSurface);
+                    if (!SceneView.lastActiveSceneView.in2DMode)
+                        ToolContext.Instance.Settings.placer_alignWithSurface = EditorGUILayout.Toggle("Align with surface?", ToolContext.Instance.Settings.placer_alignWithSurface);
+                    
                     Helpers.DrawLine(Color.grey);
                     GUILayout.Space(2.5f);
                     GUILayout.Label(PlacementModeManager.CurrentModeName.ToString(), EditorStyles.boldLabel);
