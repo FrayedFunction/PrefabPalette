@@ -69,16 +69,18 @@ namespace PrefabPalette
                     GUILayout.Space(5f);
 
                     // Global settings
-                    ToolContext.Instance.ParentObj = (GameObject)EditorGUILayout.ObjectField(
+                    tool.ParentObj = (GameObject)EditorGUILayout.ObjectField(
                         "Parent",
-                        ToolContext.Instance.ParentObj,
+                        tool.ParentObj,
                         typeof(GameObject),
                         true
                     );
 
                     if (!SceneView.lastActiveSceneView.in2DMode)
-                        ToolContext.Instance.Settings.placer_alignWithSurface = EditorGUILayout.Toggle("Align with surface?", ToolContext.Instance.Settings.placer_alignWithSurface);
-                    
+                    {
+                        tool.Settings.placer_alignWithSurface = EditorGUILayout.Toggle("Align with surface?", tool.Settings.placer_alignWithSurface);
+                    }
+
                     Helpers.DrawLine(Color.grey);
                     GUILayout.Space(2.5f);
                     GUILayout.Label(PlacementModeManager.CurrentModeName.ToString(), EditorStyles.boldLabel);
