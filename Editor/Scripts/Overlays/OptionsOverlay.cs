@@ -80,6 +80,9 @@ namespace PrefabPalette
                     {
                         // 2D
                         tool.Settings.placer_2dDepth = EditorGUILayout.FloatField("2D Depth", tool.Settings.placer_2dDepth);
+
+                        // Force align with surface off to prevent conflicts in 2D.
+                        tool.Settings.placer_alignWithSurface = false;
                     }
                     else
                     {
