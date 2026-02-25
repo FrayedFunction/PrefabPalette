@@ -141,7 +141,8 @@ namespace PrefabPalette
             }
 
             // Priority 4: XZ ground plane projection.
-            Plane fallbackPlane = new(Vector3.up, Vector3.zero);
+            Vector3 planePos = new(0, Settings.placer_3dFallbackHeight, 0);
+            Plane fallbackPlane = new(Vector3.up, planePos);
             if (fallbackPlane.Raycast(ray, out float enter))
             {
                 position = ray.GetPoint(enter);
