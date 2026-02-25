@@ -76,9 +76,15 @@ namespace PrefabPalette
                         true
                     );
 
-                    if (!SceneView.lastActiveSceneView.in2DMode)
+                    if (SceneView.lastActiveSceneView.in2DMode)
                     {
-                        tool.Settings.placer_alignWithSurface = EditorGUILayout.Toggle("Align with surface?", tool.Settings.placer_alignWithSurface);
+                        // 2D
+                        tool.Settings.placer_2dDepth = EditorGUILayout.FloatField("2D Depth", tool.Settings.placer_2dDepth);
+                    }
+                    else
+                    {
+                        // 3D
+                        tool.Settings.placer_alignWithSurface = EditorGUILayout.Toggle("Align With Surface?", tool.Settings.placer_alignWithSurface);
                     }
 
                     Helpers.DrawLine(Color.grey);
