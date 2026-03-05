@@ -1,5 +1,4 @@
 #if UNITY_EDITOR
-using Unity.VectorGraphics;
 using UnityEditor;
 using UnityEditor.Overlays;
 using UnityEngine;
