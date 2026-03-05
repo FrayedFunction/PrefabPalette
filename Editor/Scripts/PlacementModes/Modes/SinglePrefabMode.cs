@@ -100,21 +100,25 @@ namespace PrefabPalette
 
         private Vector3 GetRotationAxis(ToolContext context)
         {
-            if (context.Settings.placer_alignWithSurface)
-                return lastSurfaceNormal;
-
-            switch (modeSettings.selectedRotationAxis)
+            Vector3 axis = modeSettings.selectedRotationAxis switch 
             {
                 // X
-                case 0: return new(1, 0, 0);
+                0 => new(1, 0, 0),
                 // Y
-                case 1: return new(0, 1, 0);
+                1 => new(0, 1, 0),
                 // Z
-                case 2: return new(0, 0, 1);
+                2 => new(0, 0, 1),
 
                 // Fallback
-                default: return Vector3.up;
-            }
+                _ => Vector3.up
+            };
+
+            if (!context.Settings.placer_alignWithSurface)
+                return axis;
+
+            Quaternion surfaceRotation = Quaternion.FromToRotation(Vector3.up, lastSurfaceNormal);
+
+            return surfaceRotation * axis;
         }
     }
 }
