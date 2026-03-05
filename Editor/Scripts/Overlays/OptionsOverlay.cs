@@ -14,7 +14,6 @@ namespace PrefabPalette
     public class OptionsOverlay : Overlay
     {
         private Vector2 scrollPos;
-        private GameObject parentObj;
 
         /// <summary>
         /// Creates the UI panel content shown in the Scene View overlay.
@@ -69,14 +68,27 @@ namespace PrefabPalette
                     GUILayout.Space(5f);
 
                     // Global settings
-                    ToolContext.Instance.ParentObj = (GameObject)EditorGUILayout.ObjectField(
+                    tool.ParentObj = (GameObject)EditorGUILayout.ObjectField(
                         "Parent",
-                        ToolContext.Instance.ParentObj,
+                        tool.ParentObj,
                         typeof(GameObject),
                         true
                     );
 
-                    ToolContext.Instance.Settings.placer_alignWithSurface = EditorGUILayout.Toggle("Align with surface?", ToolContext.Instance.Settings.placer_alignWithSurface);
+                    if (SceneView.lastActiveSceneView.in2DMode)
+                    {
+                        // 2D
+                        tool.Settings.placer_2dDepth = EditorGUILayout.FloatField("2D Depth", tool.Settings.placer_2dDepth);
+
+                        // Force align with surface off to prevent conflicts in 2D.
+                        tool.Settings.placer_alignWithSurface = false;
+                    }
+                    else
+                    {
+                        // 3D
+                        tool.Settings.placer_alignWithSurface = EditorGUILayout.Toggle("Align With Surface?", tool.Settings.placer_alignWithSurface);
+                    }
+
                     Helpers.DrawLine(Color.grey);
                     GUILayout.Space(2.5f);
                     GUILayout.Label(PlacementModeManager.CurrentModeName.ToString(), EditorStyles.boldLabel);

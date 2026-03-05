@@ -40,7 +40,18 @@ namespace PrefabPalette
                 // Force a repaint when position changes
                 sceneView.Repaint();
             }
-            var normal = Settings.placer_alignWithSurface ? SceneInteraction.SurfaceNormal : Vector3.up;
+
+            Vector3 normal = Vector3.up;
+            if (SceneView.lastActiveSceneView.in2DMode)
+            {
+                // 2D mode
+                normal = Vector3.back;
+            }
+            else if (Settings.placer_alignWithSurface)
+            {
+                // 3D mode
+                normal =  SceneInteraction.SurfaceNormal;
+            }
 
             // Draw the visual placer
             DrawPlacer(previewPosition, normal);

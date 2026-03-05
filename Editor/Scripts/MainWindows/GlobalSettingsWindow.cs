@@ -47,6 +47,7 @@ namespace PrefabPalette
                 Settings.placer_radius = Mathf.Max(0.01f, EditorGUILayout.FloatField("Radius", Settings.placer_radius));
                 Settings.placer_mouseMoveThreshold = (Mathf.Max(0.001f, EditorGUILayout.FloatField("Mouse Move Threshold", Settings.placer_mouseMoveThreshold)));
                 Settings.placer_maxRaycastDistance = (Mathf.Max(1f, EditorGUILayout.FloatField("Raycast Distance", Settings.placer_maxRaycastDistance)));
+                Settings.placer_3dFallbackHeight = EditorGUILayout.FloatField("Default Floor Height", Settings.placer_3dFallbackHeight);
             });
 
             Helpers.Line(Color.gray);
