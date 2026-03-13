@@ -41,7 +41,9 @@ namespace PrefabPalette
 
         public override void OnWillBeDestroyed()
         {
-            ToolContext.Instance.OnDisable();
+            var context = ToolContext.Instance;
+            context.IsPaletteOverlayOpen = false;
+            context.OnDisable();
 
             collapsedChanged -= OnCollapsedChanged;
             displayedChanged -= OnDisplayChanged;
@@ -64,7 +66,7 @@ namespace PrefabPalette
                 ToolContext.Instance.OnDisable();
             }
 
-            ToolContext.Instance.IsOverlayEnabled = isDisplayed;
+            ToolContext.Instance.IsPaletteOverlayOpen = isDisplayed;
         }
 
         void OnGUI()

@@ -14,12 +14,13 @@ namespace PrefabPalette
         public static void Open()
         {
             GetWindow<PaletteWindow>("Prefab Palette");
-            PrefabCollectionList.Instance.Sync();
+            PrefabCollectionList.Instance.Sync();          
         }
 
         void OnEnable()
         {
             ToolContext.Instance.OnEnable();
+            ToolContext.Instance.IsPaletteWindowOpen = true;
 
             paletteGUI = new PaletteGUI();
 
@@ -36,8 +37,9 @@ namespace PrefabPalette
 
         private void OnDisable()
         {
-            if (!ToolContext.Instance.IsOverlayEnabled)
-                ToolContext.Instance.OnDisable();
+            var context = ToolContext.Instance;
+            context.OnDisable();
+            context.IsPaletteWindowOpen = false;
         }
 
         private void OnGUI()

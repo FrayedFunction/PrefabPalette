@@ -54,40 +54,33 @@ namespace PrefabPalette
             Settings = Helpers.LoadOrCreateAsset<ToolSettings>(PathDr.GetGeneratedFolderPath, "ToolSettings.asset", out _);
         }
 
-        /// <summary>
-        /// Has setup run yet?
-        /// </summary>
-        private bool isEnabled;
-
         private GameObject parentObj;
         
         /// <summary>
         /// Is the Palette Overlay enabled in the scene view?
         /// </summary>
-        public bool IsOverlayEnabled { get; set; }
+        public bool IsPaletteOverlayOpen { get; set; }
+
+        public bool IsPaletteWindowOpen { get; set; }
 
         public void OnEnable()
         {
-            if (isEnabled)
+            if (IsPaletteWindowOpen || IsPaletteOverlayOpen)
                 return;
 
             VisualPlacer.OnEnable();
             SceneInteraction.OnEnable();
             PlacementModeManager.OnEnable();
-            
-            isEnabled = true;
         }
 
         public void OnDisable()
         {
-            if (!isEnabled)
+            if (IsPaletteWindowOpen || IsPaletteOverlayOpen)
                 return;
 
             VisualPlacer.OnDisable();
             SceneInteraction.OnDisable();
             PlacementModeManager.OnDisable();
-            
-            isEnabled = false;
         }
     }
 }

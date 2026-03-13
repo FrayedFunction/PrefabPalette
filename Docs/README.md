@@ -1,245 +1,322 @@
 ![Logo](imgs/Logo_Blue_256.png)
+
 # Prefab Palette
----
-## See Also
-* [Developers](./_NoShip/Developers.md)
-* [ContributionsGuide](./_NoShip/ContributionsGuide.md) 
----
 
-## **Overview**
+**Unity Editor tool for fast visual prefab placement directly in the Scene View**.
 
-**Description:**  
-*Prefab Palette is a self contained Unity Editor tool designed to simplify prefab placement in your scenes. Tired of manually dragging and dropping prefabs into the scene, I built this tool that lets you organise prefabs into collections, choose between different placement modes, and just click in the Scene View to place them.*
+Instead of repeatedly dragging prefabs into your scene, this tool lets you organise prefabs into collections, select them from a palette, and place them using specialised placement modes.
 
-⚠️ Note: No prefabs are included with this project! Example assets are from [Raygeas: Grasslands - Stylized Nature](https://assetstore.unity.com/packages/3d/environments/fantasy/grasslands-stylized-nature-287353).
-
-**Unity Compatibility:** Unity 2021.2+
+Perfect for **level design, environment building, and rapid scene assembly** in both 2D and 3D projects.
 
 ![Tool Cover Img](imgs/PrefabPaletteTool.png)
 
 ---
 
-## **Core Features**
-
-* **Prefab Collections**:
-  Organise assets into custom collections via the *Collections Manager* or directly from the Project Window’s right-click context menu.
-
-* **Palette Window**:
-  A dockable browser to visualise and select prefabs quickly through their thumbnails.
-
-* **Scene View Overlay**:
-  Manage placement settings and toggle *Placement Modes* without leaving the Scene View.
-
-* **Visual Placer**:
-  A dynamic target reticle follows your cursor, providing real-time feedback on exactly where and how your prefab will land.
-    
-* **Placement Modes**:
-  Switch between specialised placement behaviors, each with unique logic and settings.
-
-* **Fully Configurable**:
-  Fine-tune your workflow in the *Tool Settings* window. Adjust UI scale, reticle colors, physics layers, and more.
-
-* **Native Integration**:
-  Seamlessly supports Unity’s native *Undo/Redo* system and standard *Snap Controls*.
-
-* **Extensible Architecture**:
-  Built on a modular, state-based design. Implement custom placement logic by following the [Developer Guide](./_NoShip/Developers.md#creating-new-mode).
+## Unity Compatibility
+Unity **2021.2+**
 
 ---
 
-## **Installation**
+# Installation
 
-1. Download the latest package from the **Releases** section of the repo.
+1. Download the latest `.unitypackage` from the **Releases** page.
+2. Drag the package into your Unity project.
+3. Import all files.
 
-2. Drag and drop the package into the project window of a unity project.
-
-3. Follow the dialog to import package contents.
-
-4. The prefab palette folder is self-contained, so it can be moved anywhere within the project without breaking, providing its internal integrity is maintained.
+The `PrefabPalette` folder is self-contained and can be moved anywhere inside the project as long as its internal structure is unaltered.
 
 ---
 
-## **Quick Start**
-Follow this guide to start using the tool straight away.
+# Quick Start
 
-### **Create a Collection**
-1. In the project view, navigate to your prefab folder/s.  
-2. Right click on the folder or selected prefab/s you want in the collection.  
-3. Select `Create Prefab Collection` from the context menu.  
-4. Enter a name for your collection in the dialog box.  
-5. Press Create.  
-6. After the domain reload, a dialog box will confirm collection creation.
+### 1. Create a Prefab Collection
 
-### **Open the Palette**
+1. Navigate to your prefab folder in the **Project Window**
+2. Right-click the folder or selected prefabs
+3. Select **Create Prefab Collection**
+4. Enter a name and press **Create**
+
+After the domain reload, the collection will appear in the palette.
+
+---
+
+### 2. Open the Palette
+
+The palette can be opened as a window and an overlay.
+
+#### Palette Overlay
+
+Unity Version:
+
+**2021.2 – 2022.3**
+
+Press the *backtick ( ` )* key to open the overlay menu, and ensure ``Prefab Palette`` is checked.
+
+**2023.1+**
+
+Use the Scene View overlay toolbar icon:
+
+![Palette Overlay Icon](imgs/PaletteOverlayIcon.png)
+
+The palette can now be opened in the scene view and docked for quick use.
+
+![Palette Overlay Icon](imgs/PaletteOverlay.png)
+
+#### Palette Window:
+
+Open via:
+
+`Window → Prefab Palette → Palette`
+
 ![Palette Window img](imgs/PaletteWindow.png)
 
-The palette can be opened through either:
-1. The options overlay.
-2. Unity Editor Toolbar: `Window > Prefab Palette > Palette`
+---
 
-### Choose Mode
-1. Open the tools overlay by either:
- * between Unity version **2021.2** & **2022.3**: Overlays are hidden by default. Use the *backtick* key to open the overlay menu, and choose `Prefab Palette: Options` from the list.
- * Unity version **2023.1+**: Open with the overlay toolbar icon ![Overlay Icon](imgs/OverlayToolbarIcon.png) 
+### 3. Select a Prefab
 
-2. Choose the desired mode and settings from the Options Overlay in the scene view:  
-   ![Scene View Overlay](imgs/Overlay.png) 
+Choose a collection from the dropdown and click a prefab thumbnail.
 
-### **Start Placing Prefabs**
-1. Select the collection from the enum dropdown at the top of the palette window:  
-2. Select a prefab by clicking its thumbnail:  
-   ![Palette Selected](imgs/PaletteSelected.png)   
-3. A target reticle will appear in the scene view and follow the mouse.  
-4. Click to place a prefab in the scene.  
+![Palette Selected](imgs/PaletteSelected.png)
 
 ---
 
-## **Overlay** 
-The overlay is used to toggle common settings, switch between modes, and adjust mode specific options from the scene view. Its size can be customised via the tool settings window.
+### 4. Start Placing
 
-### How to open
+Move your mouse in the Scene View.
+
+A **target reticle** will follow the cursor and show exactly where the prefab will be placed.
+
+Click to place objects.
+
+---
+
+# Core Features
+
+### Prefab Collections
+Organise prefabs into reusable collections created from folders or selected assets.
+
+### Palette Window
+Browse prefab collections and select assets using thumbnail previews.
+
+### Scene View Overlay
+Adjust placement settings and switch placement modes directly inside the Scene View.
+
+### Visual Placer
+A dynamic reticle previews exactly where the prefab will be placed before clicking.
+
+### Placement Modes
+Specialised placement behaviours designed for different workflows.
+
+### Native Unity Integration
+Fully compatible with Unity’s **Undo/Redo system** and **Snap Controls**.
+
+### Supports both 2D and 3D Modes
+Automatically detects when the Scene View switches between modes and adjusts placement behaviour accordingly.
+
+### Customisable Settings
+Adjust palette scaling, overlay size, reticle appearance, physics layers, and more.
+
+### Extensible Architecture
+Prefab Palette uses a modular state-based design, making it easy to implement custom placement modes.
+
+See the [Developer Guide](./_NoShip/Developers.md#creating-new-mode).
+
+---
+
+# Options Overlay
+
+The overlay allows you to:
+
+- Toggle placement settings
+- Switch placement modes
+- Adjust mode-specific options
+
+![Scene View Overlay](imgs/Overlay.png)
+
+### Opening the Overlay
+
 Unity Version:
- * **2021.2** <--> **2022.3**: Overlays are hidden by default. Use the *backtick* key to open the overlay menu, and choose `Prefab Palette: Options` from the list.
- * **2023.1+**: Open with the overlay toolbar icon ![Overlay Icon](imgs/OverlayToolbarIcon.png) 
 
-### Resizing the overlay
-See the *Overlay* options in the [Tool Settings & Customisation](#tool-settings--customisation) section.
+**2021.2 – 2022.3**
 
----
+Press the *backtick ( ` )* key to open the overlay menu, then select:
 
-## **Modes**
-### **Global Mode Options**
-These options are available across all placement modes.
+`Prefab Palette: Options`
 
-| *Option* | *Effect* |
-| :---- | :---- |
-| **Align with surface?** | Align the prefabs rotation with the normal of the surface it’s placed on. |
+**2023.1+**
 
-### **Single**
-Click to place a single selected prefab instance.
+Use the Scene View overlay toolbar icon.
 
-**Overlay Options**
-| *Option* | *Type* | *Effect* |
-| :---- | :---- | :---- |
-| **Rotation Speed** | Slider | Changes how fast the object rotates. |
-| **Placement Offset** | Vector 3 Field | Positions the object with an offset relative to the click position. |
-| **Align With Surface?** | Toggle | Rotates the object to match the angle (normal) of the surface clicked on. |
-
-### **Line**
-Use this mode to draw a line of prefabs and control how the line renders with the overlay options. Useful for fences and walls etc. 
-
-**Overlay Options**
-| *Option* | *Type* | *Effect* |
-| ----- | :---- | :---- |
-|  **Spacing** |  Float Field | Sets the distance between each placed prefab along the line. |
-|  **Relative Rotation** |  Vector 3 Field | Rotates each prefab relative to the line's direction. |
-|  **Variable Rotation?** |  Toggle | Applies random rotation to each prefab for more organic placement. |
-| **Range**  | Min/Max Slider | Defines the constrained range of rotation per axis. |
-| **Axis** | Vector 3 Toggle | Enables/disables random rotation per axis. |
-| **Chain Lines?** | Toggle | Starts the next line from the end of the previous one, allowing continuous placement. |
-| **Link Offset** | Vector 3 Field | Adds an offset to the start position of the chained line relative to the previous line's endpoint. |
-| **Use Alt Objs?** | Toggle | Should other objects be placed along the line? |
-| **Use Alt Prefab Collection?** | Toggle | If enabled, alt object is selected randomly from the alternative collection dropdown.  |
-| **Alt Object** | Game Object Field  OR Enum dropdown | If **Use Alt Prefab Collection** is enabled, choose the collection from the dropdown.Otherwise, this field takes a prefab to be used as the alt object. |
-| **Random?** | Toggle | Should the alt obj be placed randomly by probability? |
-| **Probability / Interval** | Float slider Or  Int Field | Probability slider from 0 to 1 if **Random** is enabled. Otherwise this field is an int for fixed intervals. |
+![Overlay Icon](imgs/OverlayToolbarIcon.png)
 
 ---
 
-## **Tool Settings & Customisation**
+## Settings
 
-Settings window can be opened via `Window > Prefab Palette > Settings`
+## Global Mode Options
 
-![Settings Window](imgs/SettingsWindow.png) 
+| Option | Effect |
+|--------|--------|
+| Parent | Object instantiated prefabs will be parented under in the hierarchy  |
 
-**Palette**
-| *Option* | *Effect* |
-| :---- | :---- |
-| **Columns** | Total number of columns. |
-| **Min Scale** | Min size of prefab thumbnails. |
-| **Max Scale** | Max size of prefab thumbnails |
+### 3D only
 
-**Visual placer**
-| *Option* | *Effect* |
-| :---- | :---- |
-| **Include Layers** | Physics layers that should be included in the placement raycast. |
-| **Color** | Set the reticle's colour. |
-| **Radius** | The size of the placer reticle. |
+| Option | Effect |
+|------|------|
+| Align with surface | Aligns the prefab rotation with the surface normal |
 
-**Overlay**
-| *Option* | *Effect* |
-| :---- | :---- |
-| **Auto Size?** | If true, will auto scale the overlay window to fit its contents with no scrolling. |
-| **Size** | Set a fixed width (x) and height (y) for the overlay. Scroll to reach cropped content.  |
+### 2D only
 
-**Window Scaling**
-
-*Global*
-| *Option* | *Effect* |
-| :---- | :---- |
-| **Global Min** | Global maximum window scale. |
-| **Global Max** | Global minimum window scale.  |
-
-*Per Window*
-| *Option* | *Effect* |
-| :---- | :---- |
-| **Use Global Window Scale** | Defaults to global scale if true.  |
-| **Min Size** | Min window scale. |
-| **Max Size** | Max window scale. |
-
-⚠️ Note: `Min Size` & `Max Size` are only visible if `Use Global Window Scale` is false.
+| Option | Effect |
+|------|------|
+| Depth | Z depth prefabs will be placed with |
 
 ---
-## **Support the Project**   
-If you find the tool useful and want to support its development, donations are welcome!
+
+## Single Mode
+
+Places a single prefab instance.
+
+### Options
+
+| Option | Type | Effect |
+|------|------|------|
+| Rotation Axis | Toolbar | Selected axis to be rotated around |
+| Rotation Speed | Slider | Controls how fast the object rotates |
+| Placement Offset | Vector3 | Offsets placement relative to the click position |
+
+---
+
+## Line Mode
+
+Draw a line of prefabs with controlled spacing and orientation.
+
+Useful for **fences, walls, and structured placement**.
+
+### Options
+
+| Option | Type | Effect |
+|------|------|------|
+| Spacing | Float | Distance between prefabs |
+| Relative Rotation | Vector3 | Rotation relative to line direction |
+| Variable Rotation | Toggle | Applies random rotation |
+| Range | Min/Max Slider | Constrained rotation range |
+| Axis | Toggle | Enables/disables random rotation per axis |
+| Chain Lines | Toggle | Continue placement from previous line |
+| Link Offset | Vector3 | Offset from previous line endpoint |
+| Use Alt Objects | Toggle | Enable alternate prefab placement |
+| Random | Toggle | Random placement probability |
+
+---
+
+# Tool Settings
+
+Open via:
+
+`Window → Prefab Palette → Settings`
+
+![Settings Window](imgs/SettingsWindow.png)
+
+---
+
+## Palette
+
+| Option | Effect |
+|------|------|
+| Overlay Scale | Palette overlay size |
+
+---
+
+## Placer
+
+| Option | Effect |
+|------|------|
+| Include Layers | Physics layers used in placement raycast |
+| Color | Reticle colour |
+| Radius | Reticle size |
+| Mouse Move Threshold | Adjust placement sensitivity |
+| Raycast Distance | Max placement distance from the scene view camera |
+| Default Floor Height | Height prefabs are placed in empty scenes (3D only) |
+
+---
+
+## Overlay
+
+| Option | Effect |
+|------|------|
+| Auto Size | Automatically resize overlay window |
+| Size | Fixed overlay width and height |
+
+---
+
+## Window Scale:
+
+| Option | Effect |
+|------|------|
+| Global Min & Global Max | Shared default window size (Only applied if per window scale is set to use global) |
+| Per Window Scale | If use global is false, windows will respect individual max and min settings. |
+
+# FAQ
+
+### Can't find the overlay?
+
+Ensure the tool imported correctly by checking:
+
+`Window → Prefab Palette`
+
+Then open the overlay using the method appropriate for your Unity version.
+
+---
+
+### Objects are stacking or jittering
+
+Check:
+
+`Tool Settings → Placer → Include Layers`
+
+Disable the physics layer used by your prefabs.
+
+---
+
+### Why can't this be installed via Unity Package Manager?
+
+Prefab Palette generates an enum at runtime to populate dropdowns with available prefab collections.
+
+Unity Package Manager packages must remain immutable, which prevents runtime file generation inside the package assembly.
+
+---
+
+# Support the Project
+
+If you find the tool useful and want to support development, donations are welcome.
 
 [![Donate on Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/frayedfunction)
 
 ---
 
-## **License**
-See [License](./License.md) file for terms of use, redistribution, & modification etc.
+# Documentation
+
+Additional documentation:
+
+- [Developer Guide](./_NoShip/Developers.md)
+- [Contribution Guide](./_NoShip/ContributionsGuide.md)
 
 ---
 
-## **FAQ**
-**Q: Can't find overlay?**  
- A: Make sure the tool is imported correctly by ensuring the  `Window` toolbar menu has an option for `Prefab Palette`.
- If you're using Unity version: 
- 
- * between **2021.2** & **2022.3**: Overlays are hidden by default. Use the *backtick* key to open the overlay menu, and choose `Prefab Palette: Options` from the list.
+# License
 
- * **2023.1+**: Open with the overlay toolbar icon ![Overlay Icon](imgs/OverlayToolbarIcon.png) 
-
-**Q: The tool doesn't show up in the Unity `Window` toolbar menu?**  
- A: Make sure the tool is imported from the Unity Package correctly, all scripts are present, and you’re using a compatible Unity version.
-
-**Q: Objects aren’t placed correctly?**  
- A: Check if your prefab has a root transform offset or collider.
-
- **Q: Objects are glitching or stacking as they're being placed?**  
- A: Check `ToolSettings > Placer > Include Layers` and deselect the physics layer your prefab is on. 
-
-**Q: Can I use this with terrain?**  
- A: Yes, the tool supports placement on Unity Terrain.
-
-**Q: Why can’t the tool be installed via Unity Package Manager?**  
- A: The tool relies on an enum generated at runtime to populate dropdowns with available collections. UPM expects packages to remain unchanged, so generating files at runtime isn’t possible. Since the generated enum needs to reside within the package's assembly definition to be accessible by dependent code, this restriction makes UPM unsuitable for distributing this tool. Working around this constraint would introduce significant complexity.
+See [License](./License.md) for terms of use, redistribution, and modification.
 
 ---
 
-## **Help**
-For questions, bug reports, or feature requests, please use the GitHub Issues page.  
-You can also reach out directly via email at reach@frayedfunction.com.
+# Changelog
+
+Release history:
+
+[Changelog](./Changelog.md)
 
 ---
 
-## **Changes & Planned Features**
-Release history is available in [Changelog](./Changelog.md).
+# Issues & Feature Requests
 
-Upcoming and planned features are tracked on the GitHub Issues page:
-- Filter by the `enhancement` label to see open feature requests.
-- Filter by the `bug` label to see open bug reports.
-- Filter by milestones to see the planned release order (subject to change).
-
----
+For bug reports, feature requests, or questions, please use the **GitHub Issues** page.
