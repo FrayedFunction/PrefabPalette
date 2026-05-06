@@ -103,7 +103,12 @@ namespace PrefabPalette
                 {
                     Helpers.DrawLogo(128);
 
-                    if (GUILayout.Button("Palette"))
+                    if (GUILayout.Button("Palette Overlay"))
+                    {
+                        PaletteOverlay.Instance?.Show();
+                    }
+
+                    if (GUILayout.Button("Palette Window"))
                     {
                         PaletteWindow.Open();
                     }
