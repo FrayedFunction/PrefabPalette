@@ -13,6 +13,7 @@ namespace PrefabPalette
     {
         PaletteGUI gui;
         IMGUIContainer imguiContainer;
+        public static PaletteOverlay Instance { get; private set; }
 
         public override VisualElement CreatePanelContent()
         {
@@ -26,6 +27,8 @@ namespace PrefabPalette
             collapsedIcon = Resources.Load<Texture2D>($"Imgs/PaletteIcon");
 
             PrefabCollectionList.Instance.Sync();
+
+            Instance = this;
 
             gui = new PaletteGUI();
 
@@ -42,6 +45,23 @@ namespace PrefabPalette
 
             collapsedChanged -= OnCollapsedChanged;
             displayedChanged -= OnDisplayChanged;
+
+            if (Instance == this)
+            {
+                Instance = null;
+            }
+        }
+
+        public void Show()
+        {
+            collapsed = false;
+            displayed = true;
+        }
+
+        public void Hide()
+        {
+            collapsed = true;
+            displayed = false;
         }
 
         private void OnCollapsedChanged(bool collapsed)
