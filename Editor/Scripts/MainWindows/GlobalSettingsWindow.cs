@@ -30,7 +30,7 @@ namespace PrefabPalette
             Helpers.DrawLine(Color.gray);
 
             // Palette Settings
-            GUILayout.Label("Palette:", EditorStyles.whiteLargeLabel);
+            GUILayout.Label("Palette Overlay:", EditorStyles.whiteLargeLabel);
             Helpers.IndentBlock(1, () =>
             {
                 Settings.palette_overlayScale = EditorGUILayout.Vector2Field("Palette Overlay Scale", Settings.palette_overlayScale);
@@ -53,7 +53,7 @@ namespace PrefabPalette
             Helpers.Line(Color.gray);
 
             // Overlay Settings
-            GUILayout.Label("Overlay:", EditorStyles.whiteLargeLabel);
+            GUILayout.Label("Mode Settings Overlay:", EditorStyles.whiteLargeLabel);
             Helpers.IndentBlock(1, () =>
             {
                 Settings.overlay_autoSize = EditorGUILayout.Toggle("Auto Size?", Settings.overlay_autoSize);
