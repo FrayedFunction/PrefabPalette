@@ -18,9 +18,6 @@ namespace PrefabPalette
         {
             imguiContainer = new IMGUIContainer(OnGUI);
 
-            imguiContainer.style.width = ToolContext.Instance.Settings.palette_overlayScale.x;
-            imguiContainer.style.height = ToolContext.Instance.Settings.palette_overlayScale.y;
-
             return imguiContainer;
         }
 
@@ -69,6 +66,9 @@ namespace PrefabPalette
 
         void OnGUI()
         {
+            imguiContainer.style.width = ToolContext.Instance.Settings.palette_overlayScale.x;
+            imguiContainer.style.height = ToolContext.Instance.Settings.palette_overlayScale.y;
+
             float availableWidth = imguiContainer.layout.width;
             if (availableWidth <= 0)
                 availableWidth = 300; // Fallback width
