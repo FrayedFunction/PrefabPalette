@@ -28,7 +28,7 @@ namespace PrefabPalette
                 var tool = ToolContext.Instance;
                 scrollPos = GUILayout.BeginScrollView(scrollPos, GUILayout.Width(tool.Settings.overlay_size.x), GUILayout.Height(tool.Settings.overlay_size.y));
 
-                if (EditorWindow.HasOpenInstances<PaletteWindow>() || tool.IsPaletteOverlayOpen)
+                if (tool.IsPaletteOpen)
                 {
                     GUILayout.BeginVertical();
                     Helpers.DrawLine(Color.grey);

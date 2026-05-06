@@ -61,13 +61,19 @@ namespace PrefabPalette
         /// </summary>
         public bool IsPaletteOverlayOpen { get; set; }
 
-        public bool IsPaletteWindowOpen { get; set; }
+        /// <summary>
+        /// returns true if overlay or window is open
+        /// </summary>
+        public bool IsPaletteOpen 
+        { 
+            get 
+            {
+                return EditorWindow.HasOpenInstances<PaletteWindow>() || IsPaletteOverlayOpen;
+            } 
+        }
 
         public void OnEnable()
         {
-            if (IsPaletteWindowOpen || IsPaletteOverlayOpen)
-                return;
-
             VisualPlacer.OnEnable();
             SceneInteraction.OnEnable();
             PlacementModeManager.OnEnable();
@@ -75,7 +81,7 @@ namespace PrefabPalette
 
         public void OnDisable()
         {
-            if (IsPaletteWindowOpen || IsPaletteOverlayOpen)
+            if (IsPaletteOpen)
                 return;
 
             VisualPlacer.OnDisable();

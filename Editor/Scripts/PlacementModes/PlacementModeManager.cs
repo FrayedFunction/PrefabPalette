@@ -129,17 +129,21 @@ namespace PrefabPalette
             CurrentModeName = asModeType;
         }
 
+        static bool hasExited; // Ensures exit logic is only called once.
         private static void OnSceneGUI(SceneView sceneView)
         {
-            if (ToolContext.Instance.SelectedPrefab != null)
+            if (ToolContext.Instance.SelectedPrefab != null && ToolContext.Instance.IsPaletteOpen)
             {
+                // Current mode and placer loop
                 CurrentMode.OnActive(ToolContext.Instance);
                 VisualPlacer.ShowTarget();
+                hasExited = false;
             }
-            else
+            else if (!hasExited)
             {
                 CurrentMode.OnExit(ToolContext.Instance);
                 VisualPlacer.Stop();
+                hasExited = true;
             }
         }
     }

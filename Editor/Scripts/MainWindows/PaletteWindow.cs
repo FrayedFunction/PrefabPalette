@@ -1,4 +1,3 @@
-using PrefabPalette;
 using UnityEditor;
 using UnityEngine;
 
@@ -20,7 +19,6 @@ namespace PrefabPalette
         void OnEnable()
         {
             ToolContext.Instance.OnEnable();
-            ToolContext.Instance.IsPaletteWindowOpen = true;
 
             paletteGUI = new PaletteGUI();
 
@@ -39,7 +37,6 @@ namespace PrefabPalette
         {
             var context = ToolContext.Instance;
             context.OnDisable();
-            context.IsPaletteWindowOpen = false;
         }
 
         private void OnGUI()
