@@ -26,8 +26,6 @@ namespace PrefabPalette
         {   
             collapsedIcon = Resources.Load<Texture2D>($"Imgs/PaletteIcon");
 
-            PrefabCollectionList.Instance.Sync();
-
             Instance = this;
 
             gui = new PaletteGUI();
@@ -74,6 +72,7 @@ namespace PrefabPalette
         {
             if (isDisplayed)
             {
+                PrefabCollectionList.Instance.Sync();
                 ToolContext.Instance.OnEnable();
             }
             else
