@@ -15,7 +15,7 @@ namespace PrefabPalette
         private Editor editorInstance;
         private Vector2 scrollPos;
 
-        public static void OpenWindow()
+        public static void Open()
         {
             CollectionsListInspector window = GetWindow<CollectionsListInspector>("Collections Inspector");
             window.collectionsList = PrefabCollectionList.Instance;

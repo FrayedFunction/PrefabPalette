@@ -13,9 +13,8 @@ namespace PrefabPalette
         public PrefabCollection CurrentPrefabCollection => PrefabCollection.GetOrCreateCollection(CurrentCollectionName);
 
         // Palette
-        public float palette_minThumbnailScale = 50f;
-        public float palette_maxThumbnailScale = 300f;
-        public int palette_gridColumns = 4;
+        public float palette_thumbnailScale = 1.7f;
+        public Vector2 palette_overlayScale = new(400, 300);
 
         // Placer
         public Color placer_color = Color.white;
@@ -24,8 +23,10 @@ namespace PrefabPalette
         public bool placer_alignWithSurface = false;
         public float placer_mouseMoveThreshold = 0.5f;
         public float placer_maxRaycastDistance = 1000f;
+        public float placer_2dDepth = 0;
+        public float placer_3dFallbackHeight = 0; // Height of the projected XZ ground plane if physics interaction fails.
 
-        // Overlay
+        // Options Overlay
         public Vector2 overlay_size = new(420, 0);
         public bool overlay_autoSize;
         public bool overlay_showControlsHelpBox = true;

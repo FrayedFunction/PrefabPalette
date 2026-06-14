@@ -114,7 +114,7 @@ namespace PrefabPalette
             string json = JsonUtility.ToJson(wrapper);
             EditorPrefs.SetString("PendingPrefabList", json);
 
-            NameCollectionDialog.Show(collectionName =>
+            NameCollectionDialog.Open(collectionName =>
             {
                 EditorPrefs.SetString("PendingPrefabCollectionName", collectionName);
 

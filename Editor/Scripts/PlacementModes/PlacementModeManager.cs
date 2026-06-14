@@ -77,6 +77,18 @@ namespace PrefabPalette
             return (TMode)constructor.Invoke(new object[] { settings });
         }
 
+        public static void OnEnable()
+        {
+            SceneView.duringSceneGui += OnSceneGUI;
+            CurrentMode.OnEnter(ToolContext.Instance);
+        }
+
+        public static void OnDisable()
+        {
+            SceneView.duringSceneGui -= OnSceneGUI;
+            CurrentMode.OnExit(ToolContext.Instance);
+        }
+
         /// <summary>
         /// Gets the currently active placement mode instance.
         /// </summary>
@@ -115,6 +127,24 @@ namespace PrefabPalette
             }
 
             CurrentModeName = asModeType;
+        }
+
+        static bool hasExited; // Ensures exit logic is only called once.
+        private static void OnSceneGUI(SceneView sceneView)
+        {
+            if (ToolContext.Instance.SelectedPrefab != null && ToolContext.Instance.IsPaletteOpen)
+            {
+                // Current mode and placer loop
+                CurrentMode.OnActive(ToolContext.Instance);
+                VisualPlacer.ShowTarget();
+                hasExited = false;
+            }
+            else if (!hasExited)
+            {
+                CurrentMode.OnExit(ToolContext.Instance);
+                VisualPlacer.Stop();
+                hasExited = true;
+            }
         }
     }
 }

@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 namespace PrefabPalette
@@ -24,12 +25,68 @@ namespace PrefabPalette
         public GameObject SelectedPrefab { get; set; }
 
         /// <summary>
+        /// The active game object new prefabs should be instatiated as children of.
+        /// </summary>
+        public GameObject ParentObj 
+        { 
+            get 
+            { 
+                return parentObj; 
+            }
+            set
+            {
+                if (value != null && value.scene.IsValid())
+                {
+                    parentObj = value;
+                    return;
+                }
+
+                parentObj = null;
+            } 
+        }
+
+        /// <summary>
         /// Private constructor to enforce singleton pattern.
         /// Loads or creates the ToolSettings asset on instantiation.
         /// </summary>
         ToolContext()
         {
             Settings = Helpers.LoadOrCreateAsset<ToolSettings>(PathDr.GetGeneratedFolderPath, "ToolSettings.asset", out _);
+        }
+
+        private GameObject parentObj;
+        
+        /// <summary>
+        /// Is the Palette Overlay enabled in the scene view?
+        /// </summary>
+        public bool IsPaletteOverlayOpen { get; set; }
+
+        /// <summary>
+        /// returns true if overlay or window is open
+        /// </summary>
+        public bool IsPaletteOpen 
+        { 
+            get 
+            {
+                return EditorWindow.HasOpenInstances<PaletteWindow>() || IsPaletteOverlayOpen;
+            } 
+        }
+
+        public void OnEnable()
+        {
+            VisualPlacer.OnEnable();
+            SceneInteraction.OnEnable();
+            PlacementModeManager.OnEnable();
+        }
+
+        public void OnDisable()
+        {
+            if (IsPaletteOpen)
+                return;
+
+            VisualPlacer.OnDisable();
+            SceneInteraction.OnDisable();
+            PlacementModeManager.OnDisable();
         }
     }
 }

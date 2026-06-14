@@ -9,9 +9,9 @@ namespace PrefabPalette
         Vector2 scrollPos;
 
         [MenuItem("Window/Prefab Palette/Settings")]
-        public static void OpenWindow()
+        public static void Open()
         {
-            var window = GetWindow<GlobalSettingsWindow>("Prefab Palette: Settings");
+            GetWindow<GlobalSettingsWindow>("Prefab Palette: Settings");
         }
 
         private void OnEnable()
@@ -24,18 +24,16 @@ namespace PrefabPalette
         private void OnGUI() 
         {
             scrollPos = GUILayout.BeginScrollView(scrollPos);
-            GUILayout.Label("v1.0.4", EditorStyles.miniLabel);
+            GUILayout.Label("v1.1.0", EditorStyles.miniLabel);
             
             Helpers.TitleText("Prefab Palette: Settings");
             Helpers.DrawLine(Color.gray);
 
             // Palette Settings
-            GUILayout.Label("Palette:", EditorStyles.whiteLargeLabel);
+            GUILayout.Label("Palette Overlay:", EditorStyles.whiteLargeLabel);
             Helpers.IndentBlock(1, () =>
             {
-                Settings.palette_gridColumns = Mathf.Max(1, EditorGUILayout.IntField("Columns", Settings.palette_gridColumns));
-                Settings.palette_minThumbnailScale = Mathf.Clamp(EditorGUILayout.FloatField("Min Thumbnail Scale", Settings.palette_minThumbnailScale), 50f, Settings.palette_maxThumbnailScale);
-                Settings.palette_maxThumbnailScale = Mathf.Clamp(EditorGUILayout.FloatField("Max Thumbnail Scale", Settings.palette_maxThumbnailScale), Settings.palette_minThumbnailScale, 500f);
+                Settings.palette_overlayScale = EditorGUILayout.Vector2Field("Palette Overlay Scale", Settings.palette_overlayScale);
             });
 
             Helpers.Line(Color.gray);
@@ -49,12 +47,13 @@ namespace PrefabPalette
                 Settings.placer_radius = Mathf.Max(0.01f, EditorGUILayout.FloatField("Radius", Settings.placer_radius));
                 Settings.placer_mouseMoveThreshold = (Mathf.Max(0.001f, EditorGUILayout.FloatField("Mouse Move Threshold", Settings.placer_mouseMoveThreshold)));
                 Settings.placer_maxRaycastDistance = (Mathf.Max(1f, EditorGUILayout.FloatField("Raycast Distance", Settings.placer_maxRaycastDistance)));
+                Settings.placer_3dFallbackHeight = EditorGUILayout.FloatField("Default Floor Height", Settings.placer_3dFallbackHeight);
             });
 
             Helpers.Line(Color.gray);
 
             // Overlay Settings
-            GUILayout.Label("Overlay:", EditorStyles.whiteLargeLabel);
+            GUILayout.Label("Mode Settings Overlay:", EditorStyles.whiteLargeLabel);
             Helpers.IndentBlock(1, () =>
             {
                 Settings.overlay_autoSize = EditorGUILayout.Toggle("Auto Size?", Settings.overlay_autoSize);

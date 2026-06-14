@@ -1,11 +1,25 @@
+# v1.1.0
+* Adds support for 2D mode:
+  * Control placement depth from the overlay
+  * Tool auto switches when editor is in 2D mode.
+* Adds new palette overlay GUI.
+* Adds thumbnail scale slider to both palette overlay and window.
+* Adds per axis rotation selection to settings overlay.
+* Adds object instance parenting field to mode settings overlay.
+* Supports surface aligned rotation.
+* Fixes not being able to place objects in empty space.
+  * Fallback height is adjustable via settings window.
+* Settings window: Section titles renamed for clarity.
+* Add 'Open Palette Overlay' button to mode settings overlay start menu.
+* Add hierarchy collapser tool to easily squash cascading hierarchy's with one button press.
+* Updated README.
+
 # v1.0.4
-* Fixes a regression introduced in v1.0.3 that broke stacking and align with surface behaviour.
+* Fixes a bug introduced in v1.0.3 that broke stacking and align with surface behaviour. **v1.0.3 has been withdrawn due to this issue. Please use v1.0.4 or greater**.
 
-* !== v1.0.3 has been withdrawn due to this issue. Please use v1.0.4. ==!
-
-# v1.0.3 - WITHDRAWN
-* !== This release was withdrawn due to a regression affecting placement behaviour.
-Do not use this version. ==!
+# v1.0.3 - *WITHDRAWN*
+* *This release was withdrawn due to a bug affecting placement behaviour.
+Do not use this version.*
 
 **Tool**
 * Placement now respects prefab stages and parents objects correctly.

@@ -13,7 +13,7 @@ namespace PrefabPalette
         private SerializedProperty listProperty;
         private Vector2 scrollPos;
 
-        public static void OpenWindow(PrefabCollection obj)
+        public static void Open(PrefabCollection obj)
         {
             PrefabCollectionInspector window = GetWindow<PrefabCollectionInspector>("Collection Editor");
             window.targetCollection = obj;

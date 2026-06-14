@@ -16,7 +16,7 @@ namespace PrefabPalette
         private const float WindowWidth = 300f;
         private const float WindowHeight = 90f;
 
-        public static void Show(Action<string> onCollectionNameConfirmed)
+        public static void Open(Action<string> onCollectionNameConfirmed)
         {
             var window = CreateInstance<NameCollectionDialog>();
             window.titleContent = new GUIContent("Name Your Collection");
